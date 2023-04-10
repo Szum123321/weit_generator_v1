@@ -8,33 +8,41 @@
 #define PORT_DIR VPORTD_DIR
 
 main:
+	;temporarly use r1 for ZERO
 	eor r1, r1
 
 	;select external clock as Main Clock source
-	ldi r0, 0x3
-	sts CLKCTRL_MCLKCTRLA, r0
+	ldi r16, 0x3
+	sts CLKCTRL_MCLKCTRLA, r16
 
-	;set port out and clear
-	ldi r0, 0xFF
-	out PORT_DIR, r0
+	;set port direction and clear
+	ldi r16, 0xFF
+	out PORT_DIR, r16
 	out PORT_OUT, r1
 
-	;load array address
+	;load pointer to sine tab to Z reg. pair
 	ldi r20, hi8(SINE_TAB)
 	mov r30, r20
 	mov r31, r1
 
-	ldi r3, 3
-	ldi r0, 1
+	; setup constans. for now, r0 wil be used as counter for RNG
+	ldi r16, 3
+	mov r3, r16
+	ldi r16, 1
+	mov r0, r16
+
+	ldi r17, 1
 
 loop:
 	;pull next byte out of memory and increment the pointer
 	ld r2, Z+
 
 	; randomise lowest bit, g' = (g*3) % 256
-	;r0 * r3 = (r1, r0) unsigned
+	; (r1, r0) = r0 * r3unsigned
 	mul r0, r3
-	andi r1, 1
+	; r1 &= 1
+	and r1, r17
+	
 	eor r2, r1
 
 	;output data

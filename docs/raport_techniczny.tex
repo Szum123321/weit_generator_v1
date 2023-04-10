@@ -185,12 +185,12 @@ częstotliwość fundamentalna generowanego sygnału.
 \end{figure}
 
 
-\begin{theorem}
 	Możemy uznać, iż dobrym przybliżeniem takiego sygnału będzie suma sinusoidy o ampitudzie równej połowie napięcia zasilania $V_{ref}$
 i o częstotliwości $f_0$ oraz sygnału prostokątnego o częstotliwości $f_0 \times N_{smpl}$ i amplitudzie $0.5 \times \frac{V_{ref}}{2^N}$, 
 gdzie $N_{smpl}$ oznacza ilość dyskretnych zmian napięcia w czasie jednego okresu.
-\end{theorem}
 
+
+\iffalse
 \begin{lemma}
 		Funkcje okresową $f(x)$ można przedstawić jako szereg fouriera
 \end{lemma}
@@ -217,7 +217,7 @@ Tak więc funkcją przybliżającą cały sygnał jest
 		%V(t) = \frac{V_{ref}}{2} \sin \left( \omega \times t \right) + \frac{V_{ref}}{ 2^{N -1}\pi} \sum_{n=1,3,5...}^{\infty} \frac{1}{n} \sin \left( \omega \times N_{smpl} \times n \times t \right)
 	\end{equation}
 \end{theorem}
-
+\fi
 
 Widzimy więc że że częstotliwość już częstotliwość drugiej składowej jest $N_{smpl}$ - krotnie większa, a jej amplituda $2^{N -2}\pi$-krotnie mniejsza w porównaniu ze składową fundamentalną.
 Oznacza to, iż przy zastosowaniu filtru dolnoprzepustowego niskiego stopnia, możliwe jest efektywne usunięcie składowych wyższej częśtotliwości.

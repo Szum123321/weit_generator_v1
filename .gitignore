@@ -3,3 +3,9 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
+docs/*
+!docs/raport_techniczny.tex
+!docs/raport_techniczny.pdf
+!docs/references.lib
+!docs/img/*
+!docs/.latexmkrc
