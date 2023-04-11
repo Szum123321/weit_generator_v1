@@ -1,0 +1,4 @@
+
+#define PORT_OUT VPORTD_OUT
+#define PORT_DIR VPORTD_DIR
+#define DITHER
