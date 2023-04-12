@@ -7,5 +7,5 @@ docs/*
 !docs/raport_techniczny.tex
 !docs/raport_techniczny.pdf
 !docs/references.lib
-!docs/img/*
+!docs/img
 !docs/.latexmkrc
