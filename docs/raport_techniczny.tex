@@ -6,7 +6,7 @@
 \usepackage[T1]{fontenc}
 
 \usepackage{graphicx}
-\usepackage[inkscapeformat=png]{svg}
+\usepackage[inkscapeformat=pdf]{svg}
 
 \usepackage{url}
 \usepackage{hyperref}
@@ -16,8 +16,7 @@
     filecolor=magenta,      
     urlcolor=cyan,
     pdftitle={Overleaf Example},
-    pdfpagemode=FullScreen,
-    }
+}
 
 \usepackage{amsmath}
 \usepackage{bytefield}
@@ -235,7 +234,8 @@ To tego celu służy tzw. Detektor szczytowy (Rys. \ref{fig:peak-detector-schema
 
 \begin{figure}[h]
 	\centering
-	\includegraphics{img/peak_detector.pdf}
+	%\includegraphics{img/peak_detector.pdf}
+	\includesvg{img/peak_detector.svg}
 	\caption{Przykładowy schemat połówkowego detektora szczytowego}
 	\label{fig:peak-detector-schematic}
 \end{figure}
