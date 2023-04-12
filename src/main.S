@@ -10,27 +10,33 @@ main:
 	eor r1, r1
 
 	;select external clock as Main Clock source @\label{code:set_clock}@
-	ldi r16, 0x3
-	sts CLKCTRL_MCLKCTRLA, r16
+	ldi r16, 0xD8; MAGIC VALUE
+	ldi r17, 0x83
+	out CPU_CCP, r16
+	sts CLKCTRL_MCLKCTRLA, r17; use external clock
+
+	out CPU_CCP, r16
+	sts CLKCTRL_MCLKCTRLB, r1; disable prescaler
 
 	;set port direction and clear
 	ldi r16, 0xFF
-	out PORT_DIR, r16
+	sts PORTD_DIRSET, r16
 	out PORT_OUT, r1
 
-	;load pointer to sine tab to Z reg. pair @\label{code:set_r20_bp}@
+	;load pointer to Z reg. pair @\label{code:set_r20_bp}@
 	ldi r20, hi8(SINE_TAB)
-	mov r30, r20
-	mov r31, r1
+	mov r31, r20
+	mov r30, r1
 
 #ifdef DITHER
-	; setup constans. for now, r0 wil be used as counter for RNG
+	; setup constans. r0 is used as counter for RNG
 	ldi r16, 3
 	mov r3, r16
 	ldi r16, 1
 	mov r0, r16
 	ldi r17, 1
 #endif //DITHER
+
 
 loop:
 	;pull next byte out of memory and increment the pointer @\label{code:load_and_inc}@
@@ -39,7 +45,8 @@ loop:
 #ifdef DITHER
 	; randomise lowest bit @\label{code:dither}@
 	mul r0, r3
-	and r1, r17
+	;and r1, r17
+	nop
 	eor r2, r1
 #endif //DITHER
 
@@ -47,11 +54,10 @@ loop:
 	out PORT_OUT, r2
 	
 	;cyclize data pointer @\label{code:overflow_pointer}@
-	andi r30, 0x03
-	or r30, r20
+	andi r31, 0x03
+	or r31, r20
 
 	;pad for 12.288 MHz
-	nop
 #ifndef DITHER
 	nop
 	nop

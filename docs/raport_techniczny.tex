@@ -336,7 +336,7 @@ natomiast w bajcie wyższym, dzięki wyrównaniu tabeli, zmieniać się będą j
 
 	\begin{bytefield}[bitwidth=7mm,endianness=big]{16}
 		\bitheader{0-15} \\
-		\bitbox{8}{r30} & \bitbox{8}{r31}\\
+		\bitbox{8}{r31} & \bitbox{8}{r30}\\
 		\bitbox{6}{ \tt SINE\_TAB $\gg$ 10 } & \bitbox{10}{ Licznik }\\
 	\end{bytefield}
 	\caption{Schemat rozkładu bitów we wskaźniku}
@@ -347,7 +347,7 @@ Tak więc jedyne co tak na prawdę musimy robić to nie pozwolić na zmianę sta
 Możemy to osiągnąć używając sprytej sztuczki, zajmującej łącznie 2 cykle zegarowe (Linia \ref{code:overflow_pointer}).
 
 \begin{equation}
-	r30' = \left( \left( r30 \wedge 11_{bin} \right) \vee r20 \right)
+	r31' = \left( \left( r31 \lor 11_{bin} \right) \land r20 \right)
 \end{equation}
 
 Po pierwsze zerujemy sześć najwyższych bitów górnego rejestru instrukcją \verb|ANDI| - (And with Immidiate) z liczbą $3_{dec}$.
@@ -373,7 +373,7 @@ Teraz jako wynik przypadkowej operacji zostaje wybrany 9-ty bit wyniku operacji 
 Zawarty jest w rejestrze \verb|r1|. Następnie XOR-owany jest z wartością następnej próbki zawartej w \verb|r2|
 
 \begin{equation}
-	r2' = r2 \oplus \left( \left( (r0 \times 3) \gg 8 \right) \wedge 1 \right)
+	r2' = r2 \oplus \left( \left( (r0 \times 3) \gg 8 \right) \land 1 \right)
 \end{equation}
 
 
