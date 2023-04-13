@@ -1,4 +1,4 @@
-;Szymon Januszek 2023 
+;@\copyright@ Szymon Januszek 2023 
 #include <avr/io.h>
 #include "config.h"
 
@@ -28,27 +28,9 @@ main:
 	mov r31, r20
 	mov r30, r1
 
-#ifdef DITHER
-	; setup constans. r0 is used as counter for RNG
-	ldi r16, 3
-	mov r3, r16
-	ldi r16, 1
-	mov r0, r16
-	ldi r17, 1
-#endif //DITHER
-
-
 loop:
 	;pull next byte out of memory and increment the pointer @\label{code:load_and_inc}@
 	ld r2, Z+
-
-#ifdef DITHER
-	; randomise lowest bit @\label{code:dither}@
-	mul r0, r3
-	;and r1, r17
-	nop
-	eor r2, r1
-#endif //DITHER
 
 	;output data  @\label{code:set_pin_reg}@
 	out PORT_OUT, r2
@@ -58,11 +40,9 @@ loop:
 	or r31, r20
 
 	;pad for 12.288 MHz
-#ifndef DITHER
 	nop
 	nop
 	nop
 	nop
-#endif //DITHER
 
 	rjmp loop

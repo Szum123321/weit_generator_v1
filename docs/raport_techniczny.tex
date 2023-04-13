@@ -81,7 +81,6 @@ na ułamek napięcia zasilania.
 \begin{figure}[h]
 	\centering
 
-
 	\begin{circuitikz}[scale=0.9]
 		\def\n{2}
 	
@@ -149,7 +148,6 @@ Aby zachować użyteczność najniższych bitów, precyzja wykorzystanych rezyst
 $\frac{1}{2^N} \times 100\unit{\percent} \approx \qty{0,3}{\%}$. Na szczęście,
 w sprzedaży dostępne są rezystory przeznaczone do montażu powierzchniowego o precyzji \qty{0,1}{\%}.
 
-
 \subsection{Analiza sygnału wyjściowego}
 
 Sygnał generowany w ten sposób nie opowiada jednak perfekcyjnej sinusoidzie (Rys. \ref{fig:sine-stepped}).
@@ -167,7 +165,7 @@ częstotliwość fundamentalna generowanego sygnału.
 \end{figure}
 
 
-	Możemy uznać, iż dobrym przybliżeniem takiego sygnału będzie suma sinusoidy o amplitudzie równej połowie napięcia zasilania $V_{ref}$
+Możemy uznać, iż dobrym przybliżeniem takiego sygnału będzie suma sinusoidy o amplitudzie równej połowie napięcia zasilania $V_{ref}$
 i o częstotliwości $f_0$ oraz sygnału prostokątnego o częstotliwości $f_0 \times N_{smpl}$ i amplitudzie $0.5 \times \frac{V_{ref}}{2^N}$, 
 gdzie $N_{smpl}$ oznacza ilość dyskretnych zmian napięcia w czasie jednego okresu.
 
@@ -196,7 +194,6 @@ Tak więc funkcją przybliżającą cały sygnał jest
 	\end{equation}
 	\begin{equation}
 		V(t) = \frac{V_{ref}}{2} \left( \sin \left( \omega \times t \right) + \frac{1}{ 2^{N - 2}\pi} \sum_{n=1,3,5...}^{\infty} \frac{1}{n} \sin \left( \omega \times N_{smpl} \times n \times t \right) \right)
-		%V(t) = \frac{V_{ref}}{2} \sin \left( \omega \times t \right) + \frac{V_{ref}}{ 2^{N -1}\pi} \sum_{n=1,3,5...}^{\infty} \frac{1}{n} \sin \left( \omega \times N_{smpl} \times n \times t \right)
 	\end{equation}
 \end{theorem}
 \fi
@@ -205,15 +202,23 @@ Widzimy więc że że częstotliwość już częstotliwość drugiej składowej 
 Oznacza to, iż przy zastosowaniu filtru dolnoprzepustowego niskiego stopnia, możliwe jest efektywne usunięcie składowych wyższej częstotliwości.
 
 \section{Kształtowanie}
+Mimo wszystko należy usunąć składowe wyższej częstotliwości. Funkcje tą realizuje kondensator \verb|C2| (Rys. \ref{fig:filter}).
 
-\begin{LARGE}
-	TBD
-\end{LARGE}
+Dodatkowo, rzeczywiste wzmacniacze operacyjne nie są wstanie generować sygnałów bardzo bliskich $<\qty{300}{\mV}$ szyn zasilania.
+Tłumienia tego dokonują \verb|C1, R1, R2|, jednocześnie zachowując wartość środkową na poziomie \qty{1,5}{\V}
+
+\begin{figure}[h]
+	\centering
+	\includesvg{img/filter.svg}
+	\caption{Schemat filtru}
+	\label{fig:filter}
+\end{figure}
+
 
 \section{Kontrola Amplitudy}
 
 Ostatnią zmienną którą należy rozpatrzyć jest amplituda sygnału wyjściowego. Na tym etapie amplituda sygnału jest większa od oczekiwanej wartości
-\qty{0,5}{\V}. Potrzebna jest więc metoda dokładnego tłumienia, nie wprowadzająca dodatkowych zniekształceń i zakłucenia.
+\qty{0,5}{\V}. Potrzebna jest więc metoda dokładnego tłumienia, nie wprowadzająca dodatkowych zniekształceń i zakłócenia.
 
 Rozwiązanie oparte o nawet precyzyjny potencjometr pozostaje jednak wrażliwe na takie zmienne jak napięcie zasilania, 
 czy też dryft parametrów elementów związany ze zmianą temperatury.
@@ -228,8 +233,7 @@ korygującą amplitude sygnału względem stałego napięcia odniesienia.
 Do realizacji tego rozwiązania potrzebujemy następujących elementów.
 
 \subsection{Pomiar amplitudy}
-
-Po pierwsze, konieczny jest pomiar amplitudy sygnału wyjściowego. \
+Konieczny jest pomiar amplitudy sygnału wyjściowego. \
 To tego celu służy tzw. Detektor szczytowy (Rys. \ref{fig:peak-detector-schematic}). 
 
 \begin{figure}[h]
@@ -297,10 +301,10 @@ zdefiniowana jest w następujący sposób:
 	f(i) = (2^N - 1) + \left\lfloor (2^N - 1) \times \sin \left(\frac{2 \pi \times i}{N_{smpl}}\right)\right\rceil
 \end{equation}
 \begin{equation}
-	f(i) = 127 + \left\lfloor 127 \times  \sin \left(\frac{2 \pi \times i}{1024}\right)\right\rceil
+	f(i) = 128 + \left\lfloor 127 \times \sin \left(\frac{2 \pi \times i}{1024}\right)\right\rceil
 \end{equation}
 
-Każda próbka jest 8-bitową liczbą całkowitą z zakresu $\in \{0 \dots 254\}$, jednocześnie tabela przedstawia cały jeden okres funkcji sinus,
+Każda próbka jest 8-bitową liczbą całkowitą z zakresu $\in \{1 \dots 255\}$, jednocześnie tabela przedstawia cały jeden okres funkcji sinus,
 poza wartością $\sin (2 \pi)$. Następną próbkę stanowi wartość $\sin (0)$. Dzięki temu reprodukowany sygnał nie zawiera przeskoku co cały okres.
 
 Zadaniem oprogramowania mikrokontrolera pozostaje wczytanie kolejnych wartości z pamięci,
@@ -344,16 +348,18 @@ natomiast w bajcie wyższym, dzięki wyrównaniu tabeli, zmieniać się będą j
 \end{figure}
 
 Tak więc jedyne co tak na prawdę musimy robić to nie pozwolić na zmianę stanu 6 najwyższych bitów wskaźnika.
-Możemy to osiągnąć używając sprytej sztuczki, zajmującej łącznie 2 cykle zegarowe (Linia \ref{code:overflow_pointer}).
+Możemy to osiągnąć używając sprytnej sztuczki, zajmującej łącznie 2 cykle zegarowe (Linia \ref{code:overflow_pointer}).
 
 \begin{equation}
-	r31' = \left( \left( r31 \lor 11_{bin} \right) \land r20 \right)
+	r31' = \left( \left( r31 \land 11_{bin} \right) \lor r20 \right)
 \end{equation}
 
 Po pierwsze zerujemy sześć najwyższych bitów górnego rejestru instrukcją \verb|ANDI| - (And with Immidiate) z liczbą $3_{dec}$.
 Następnie instrukcja \verb|OR| przywraca poprawny stan wyższych bitów, 
 które na początku działania programu zostały zapisane w rejestrze 20 (Linijka \ref{code:set_r20_bp}).
 
+
+\iffalse
 \subsection{Dithering}
 Techniką mogącą poprawić charakterystykę szumową sygnału jest tzw. Dihering. polegającą na uprzypadkowieniu najniższych bitów próbek.
 Pozwala to na gładszy rozkład energii składowych wynikających z kwantyfikacji sygnału (Rys. \ref{fig:sine-stepped})
@@ -375,7 +381,7 @@ Zawarty jest w rejestrze \verb|r1|. Następnie XOR-owany jest z wartością nast
 \begin{equation}
 	r2' = r2 \oplus \left( \left( (r0 \times 3) \gg 8 \right) \land 1 \right)
 \end{equation}
-
+\fi
 
 \subsection{Kod źródłowy}
 
