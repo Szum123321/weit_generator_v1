@@ -3,6 +3,7 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
+weit_generator-backups
 docs/*
 !docs/raport_techniczny.tex
 !docs/raport_techniczny.pdf

@@ -1,0 +1,69 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
+{
+    "configurations": [
+        {
+            "name": "PlatformIO",
+            "includePath": [
+                "/home/szymon/Documents/Projects/weit_generator_v1/include",
+                "/home/szymon/Documents/Projects/weit_generator_v1/src",
+                "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/cores/MegaCoreX/api/deprecated",
+                "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/cores/MegaCoreX",
+                "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/variants/48pin-standard",
+                "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/Comparator/src",
+                "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/EEPROM/src",
+                "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/Event/src",
+                "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/Logic/src",
+                "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/MegaCoreX/src",
+                "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/Optiboot_flasher/src",
+                "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/SD/src",
+                "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/SPI/src",
+                "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/Servo/src",
+                "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/SoftwareSerial/src",
+                "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/Wire/src",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "/home/szymon/Documents/Projects/weit_generator_v1/include",
+                    "/home/szymon/Documents/Projects/weit_generator_v1/src",
+                    "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/cores/MegaCoreX/api/deprecated",
+                    "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/cores/MegaCoreX",
+                    "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/variants/48pin-standard",
+                    "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/Comparator/src",
+                    "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/EEPROM/src",
+                    "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/Event/src",
+                    "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/Logic/src",
+                    "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/MegaCoreX/src",
+                    "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/Optiboot_flasher/src",
+                    "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/SD/src",
+                    "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/SPI/src",
+                    "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/Servo/src",
+                    "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/SoftwareSerial/src",
+                    "/home/szymon/.platformio/packages/framework-arduino-megaavr-megacorex/libraries/Wire/src",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=60106",
+                "ARDUINO_AVR_ATmega4809",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_MEGAAVR",
+                "ARDUINO=10808",
+                ""
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "/home/szymon/.platformio/packages/toolchain-atmelavr@1.70300.191015/bin/avr-gcc",
+            "compilerArgs": [
+                "-mmcu=atmega4809",
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}
