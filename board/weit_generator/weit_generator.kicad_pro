@@ -505,6 +505,10 @@
     [
       "97b440c2-49e0-43c1-8dbd-070a3fa32fe0",
       "Autogain"
+    ],
+    [
+      "c84d89b1-3fd5-47f9-a208-e444834fa15f",
+      "Voltage reference"
     ]
   ],
   "text_variables": {}
