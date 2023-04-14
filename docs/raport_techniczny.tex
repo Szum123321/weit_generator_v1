@@ -205,7 +205,7 @@ Oznacza to, iż przy zastosowaniu filtru dolnoprzepustowego niskiego stopnia, mo
 Mimo wszystko należy usunąć składowe wyższej częstotliwości. Funkcje tą realizuje kondensator \verb|C2| (Rys. \ref{fig:filter}).
 
 Dodatkowo, rzeczywiste wzmacniacze operacyjne nie są wstanie generować sygnałów bardzo bliskich $<\qty{300}{\mV}$ szyn zasilania.
-Tłumienia tego dokonują \verb|C1, R1, R2|, jednocześnie zachowując wartość środkową na poziomie \qty{1,5}{\V}
+Tłumienia tego dokonują \verb|C1, R1, R2|, zachowując wartość środkową na poziomie \qty{1,5}{\V}
 
 \begin{figure}[h]
 	\centering
@@ -291,7 +291,7 @@ pętli sprzężenia zwrotnego.
 W tym momęcie potrzebne jest jedynie stabilne oraz dostrajalne źródło napięcia odniesienia.
 Do tego celu z zupełności wystarczy układ LM4041 wraz z precyzyjnym potencjometrem.
 
-\section{Implementacja}
+\section{Oprogramowanie}
 \label{sec:impl}
 Czas przejść do opisu kodu źródłowego.
 W pliku \verb|sine_tab.cpp| znajduje się definicja tabeli funkcji sinus. Składa się ona z \verb|1024| próbek, a wartość \verb|i|-tej próbki 
@@ -385,7 +385,7 @@ Zawarty jest w rejestrze \verb|r1|. Następnie XOR-owany jest z wartością nast
 
 \subsection{Kod źródłowy}
 
-\inputminted[linenos=true,escapeinside=@@,fontfamily=phv]{asm}{../src/main.S}
+\inputminted[linenos=true,escapeinside=@@,fontfamily=phv]{asm}{../code/src/main.S}
 
 \newpage
 \printbibliography %Prints bibliography
