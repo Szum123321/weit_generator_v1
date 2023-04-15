@@ -291,6 +291,12 @@ pętli sprzężenia zwrotnego.
 W tym momęcie potrzebne jest jedynie stabilne oraz dostrajalne źródło napięcia odniesienia.
 Do tego celu z zupełności wystarczy układ LM4041 wraz z precyzyjnym potencjometrem.
 
+\subsection{Dostrajanie}
+Szczególnie trudnym okazało się zapewnienie stabilnej pracy układu. 
+Wartości elementów w pętli kompensacji zostały w większości dobrane empirycznie.
+Konieczne było zastosowanie dużej pojemności kondensatorów elektrolitycznych, 
+ze względu na duży czas propagacji sygnału błędu przez tłumik, filtr oraz detektor.
+
 \section{Oprogramowanie}
 \label{sec:impl}
 Czas przejść do opisu kodu źródłowego.
@@ -387,8 +393,32 @@ Zawarty jest w rejestrze \verb|r1|. Następnie XOR-owany jest z wartością nast
 
 \inputminted[linenos=true,escapeinside=@@,fontfamily=phv]{asm}{../code/src/main.S}
 
+\section{Eksperymenty}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{img/experimental_setup.jpg}
+	\caption{złożony układ eksperymentalny}
+	
+\end{figure}
+
+Przedstawiony układ został przetestowany z następującymi zmianami:
+
+\begin{itemize}
+	\item Mikrokontroler: ATMega4809
+	\item Rezystory drabiny R-2R: \qty{10}{\kohm}, \qty{20}{\kohm}
+\end{itemize}
+
+Układ ATMega4809 zachowuje pełną kompatybilność kodu źródłowego z AVR32DA28. 
+Jednoczeście oba mikrokontrolery bazują na tej samej wersji architektury AVR.
+
+Zaobserwowane parametry pracy:
+\begin{itemize}
+	\item Pobór prądu przy napięciu zasilania \qty{3}{\V}: \qty{7}{\mA}
+\end{itemize}
+
+
 \newpage
-\printbibliography %Prints bibliography
+\printbibliography[title=Źródła] %Prints bibliography
 
 \newpage
 
