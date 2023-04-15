@@ -222,7 +222,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid a6df4201-285a-4d65-85db-981cb3c32588)
   )
-  (text "R-2R 8-bit volatage-mode DAC. 1% or better resistors are highly recommended.\nBy Thévenin's theorem Output impedance is 1k"
+  (text "R-2R 8-bit volatage-mode DAC. 0.1% or better resistors are highly recommended."
     (at 179.07 171.45 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid b00a842c-6d8f-4807-a359-fbfea2e575cc)
