@@ -35,8 +35,8 @@
         "other_text_upright": false,
         "pads": {
           "drill": 2.2,
-          "height": 3.5,
-          "width": 3.5
+          "height": 3.8,
+          "width": 3.8
         },
         "silk_line_width": 0.15,
         "silk_text_italic": false,
@@ -500,11 +500,11 @@
     ],
     [
       "bc867f68-0e73-45d0-a69e-b51a7f01f5c2",
-      "Output Filter"
+      "Filtr Wyjściowy"
     ],
     [
       "97b440c2-49e0-43c1-8dbd-070a3fa32fe0",
-      "Autogain"
+      "Kontrola Amplitiudy"
     ]
   ],
   "text_variables": {}

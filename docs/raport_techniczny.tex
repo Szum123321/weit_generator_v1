@@ -15,7 +15,7 @@
     linkcolor=blue,
     filecolor=magenta,      
     urlcolor=cyan,
-    pdftitle={Overleaf Example},
+    pdftitle={Generator 1KHz - Raport Techniczny, Szymon Januszek},
 }
 
 \usepackage{amsmath}
@@ -50,7 +50,7 @@
 \end{abstract}
 
 \begin{center}
-	\includegraphics[width=0.9\textwidth]{img/board_render_1.jpg}
+	\includegraphics[width=0.9\textwidth]{board_render_1.png}
 \end{center}
 
 %TODO: fancy graphics
@@ -136,7 +136,7 @@ Napięcie na węźle wyjściowym przetwornika można opisać w następujący spo
 	V_{wyj}=V_{ref} \times \frac{a_0 \times 2^0 + a_1 \times 2^1 + a_2 \times 2^2 + ... + a_{N - 1} \times 2^{N- 1}}{2^N}
 \]
 
-Jak widać, przy $N=8$, przetwornik ten pozwala na uzyskanie 256 różnych wartości. Dla $V_{ref}=\qty{3}{\volt}$,
+Przy $N=8$, przetwornik ten pozwala na uzyskanie 256 różnych wartości. Dla $V_{ref}=\qty{3}{\volt}$,
 oznacza to, iż różnica pomiędzy dwoma dowolnymi stopniami wynosi ok. \qty{11,72}{\mV}.
 
 Co ciekawe, okazuje się, iż impedancja wyjściowa takiego układu jest stała dla każdego poziomu
@@ -146,15 +146,15 @@ Co ciekawe, okazuje się, iż impedancja wyjściowa takiego układu jest stała 
 }.
 
 Aby zachować użyteczność najniższych bitów, precyzja wykorzystanych rezystorów musi być lepsza niż
-$\frac{1}{2^N} \times 100\unit{\percent} \approx \qty{0,3}{\%}$. Na szczęście,
-w sprzedaży dostępne są rezystory przeznaczone do montażu powierzchniowego o precyzji \qty{0,1}{\%}.
+$\frac{1}{2^N} \times 100\unit{\percent} \approx \qty{0,3}{\%}$. Stąd, wykorzystane zostały
+rezystory przeznaczone do montażu powierzchniowego o precyzji \qty{0,1}{\%}.
 
 \subsection{Analiza zniekształceń przetwornika}
 
 Sygnał generowany w ten sposób nie opowiada jednak perfekcyjnej sinusoidzie (Rys. \ref{fig:sine-stepped}).
 Obecne jest tzw. zniekształcenie kwantyzacji, wynikające z faktu, iż sygnał złożony jest 
-z serii dyskretnych wartości. Jednak jeśli dokładnie przyjrzymy się różnicy pomiędzy naszym sygnałem
-a idealnej sinusoidzie, to okaże się, że następna składowa generowanego sygnału ma częstotliwość $f_1 = f_0 \times N_{smpl}$.
+z serii dyskretnych wartości. Jednak jeśli dokładnie przyjrzymy się różnicy pomiędzy uzyskanym sygnałem,
+a idealną sinusoidą, to okaże się, że pierwsza składowa tej różnicy ma częstotliwość $f_1 = f_0 \times N_{smpl}$.
 
 Co więcej, stosunek mocy całego sygnału do mocy wyższych składowych dla konwertera z N-bitami wynosi
 \begin{equation}
@@ -175,8 +175,8 @@ oraz jest rozłożona w paśmie megahercowym.
 \section{Kształtowanie}
 Mimo wszystko należy usunąć składowe wyższej częstotliwości. Funkcje tą realizuje kondensator \verb|C2| (Rys. \ref{fig:filter}).
 
-Dodatkowo, rzeczywiste wzmacniacze operacyjne nie są wstanie generować sygnałów bardzo bliskich $<\qty{300}{\mV}$ szyn zasilania.
-Tłumienia tego dokonują \verb|C1, R1, R2|, zachowując wartość środkową na poziomie \qty{1,5}{\V}
+Dodatkowo, rzeczywiste wzmacniacze operacyjne nie są wstanie generować sygnałów bardzo bliskich ($ |V_{out} - V_{bus}| <\qty{300}{\mV}$) szyn zasilania.
+Tłumienia tego dokonują komponenty pasywne \verb|C1, R1, R2|, zachowując wartość środkową sygnału na poziomie \qty{1,5}{\V}
 
 \begin{figure}[h]
 	\centering
@@ -187,24 +187,24 @@ Tłumienia tego dokonują \verb|C1, R1, R2|, zachowując wartość środkową na
 
 \section{Kontrola Amplitudy}
 
-Ostatnią zmienną którą należy rozpatrzyć jest amplituda sygnału wyjściowego. Na tym etapie poziom sygnału jest wyższy od oczekiwanej wartości
-\qty{0,5}{\V}. Potrzebna jest więc metoda dokładnego tłumienia, nie wprowadzająca dodatkowych zniekształceń i zakłócenia.
+Ostatnią zmienną, którą należy rozpatrzyć jest amplituda sygnału wyjściowego. Na tym etapie poziom sygnału jest wyższy od oczekiwanej wartości
+\qty{0,5}{\V}. Potrzebna jest więc metoda dokładnego tłumienia, nie wprowadzająca dodatkowych zniekształceń i zakłóceń.
 
-Rozwiązanie oparte o nawet precyzyjny potencjometr pozostaje jednak wrażliwe na zmianę absolutnej wartości napięcia zasilania,
+Rozwiązanie oparte o precyzyjny potencjometr pozostaje jednak wrażliwe na zmianę absolutnej wartości napięcia zasilania,
 czy też dryft elementów związany ze zmianą temperatury.
 
 Tak więc, niezbędny jest układ aktywnie korygujący amplitudę sygnału.
-Cyfrowa implementacja takiego rozwiązania nie wchodzi w gre, 
+Cyfrowa implementacja takiego rozwiązania nie jest możliwa, 
 ponieważ przetwornik DAC nie posiada wystarczającej głębokości bitowej. 
-Stąd też, proponuję rozwiązanie w pełni analogowe.
+Stąd też, wybrałem rozwiązanie w pełni analogowe.
 
-Przy użyciu wzmacniaczy operacyjnych możemy uzyskać pętle sprzężenia zwrotnego, 
-korygującą amplitude sygnału względem stałego napięcia odniesienia.
+Przy użyciu wzmacniaczy operacyjnych możemy uzyskać pętlę sprzężenia zwrotnego, 
+korygującą amplitudę sygnału względem stałego napięcia odniesienia.
 Do realizacji tego rozwiązania potrzebujemy następujących elementów.
 
 \subsection{Pomiar amplitudy}
 Konieczny jest pomiar amplitudy sygnału wyjściowego. \
-To tego celu służy tzw. Detektor szczytowy (Rys. \ref{fig:peak-detector-schematic}). 
+Do tego celu wykorzystany został tzw. Detektor szczytowy (Rys. \ref{fig:peak-detector-schematic}). 
 
 \begin{figure}[h]
 	\centering
@@ -222,12 +222,12 @@ Wymagany jest układ umożliwiający tłumienie sygnału zmiennego względem syg
 	\label{eq:coupling_1}
 \end{equation}
 
-Fizyczna implementacja takiego układu okazuje się być niebanalna.
+Fizyczna implementacja takiego układu okazuje się być nietrywialna.
 Możliwy jest układ realizujący operacje mnożenia wartości sygnałów. 
-Jego realizacja jednak jest wysoce złożona i wymaga relatywnie dużo części.
+Jego realizacja jest jednak złożona i wymaga relatywnie dużo części.
 
-Alternatywna metoda wykorzystuje element zmieniający swój opór elektryczny względem jakiegoś innego czynnika.
-Przykładem historycznej realizacji takiego układu jest zastosowanie niewielkiej łapmy żarowej,
+Alternatywna metoda wykorzystuje element zmieniający swój opór elektryczny względem innego czynnika.
+Przykładem historycznej realizacji takiego układu jest zastosowanie niewielkiej lampy żarowej,
 której opór włókna jest wprost proporcjonalny do jego temperatury.
 
 Istnieje jednak znacznie prostsze i wydajniejsze rozwiązanie.
@@ -238,7 +238,7 @@ tzn. prąd przepływający jest wprost proporcjonalny do przyłożonego napięci
 $I \propto V$, tym samym jego zastosowanie nie wprowadzi zniekształceń mogących wynikać
 z nie liniowości elementów półprzewodnikowych.
 
-Tak więc, jeśli zamknie się fotorezystor w obudowie światłoszczelnej wraz z diodą LED,
+Tak więc, łącząc w obudowie światłoszczelnej fotorezystor wraz z diodą LED,
 uzyskamy układ o zmiennym oporze elektrycznym, kontrolowany przez prąd diody\footnote{Zakładam $\phi \propto I$}.
 
 \begin{equation}
@@ -247,9 +247,8 @@ uzyskamy układ o zmiennym oporze elektrycznym, kontrolowany przez prąd diody\f
 
 Umożliwia to łatwą implementacje układu sprzężenia (Eq. \ref{eq:coupling_1}). 
 
-Co prawda powyższy model ignoruje fakt,
-iż tak na prawdę opór fotorezystora zależny jest wykładniczo od natężenia padającego światła
-$R = \left(\frac{1}{\phi}\right)^A$. Nie stanowi jednak to dużego problemu ponieważ układ ten znajduje się w 
+Powyższy model pomija fakt, że w rzeczywistości opór fotorezystora zależny jest wykładniczo od natężenia padającego światła
+$R = \left(\frac{1}{\phi}\right)^A$. Nie stanowi jednak to dużego problemu, ponieważ układ ten znajduje się w 
 pętli sprzężenia zwrotnego.
 
 \begin{equation}
@@ -257,8 +256,8 @@ pętli sprzężenia zwrotnego.
 \end{equation}
 
 \subsection{Źródło odniesienia}
-W tym momencie potrzebne jest jedynie stabilne oraz dostrajalne źródło napięcia odniesienia.
-Do tego celu z zupełności wystarczy układ LM4041 wraz z precyzyjnym potencjometrem.
+Na tym etapie potrzebne jest jedynie stabilne oraz dostrajalne źródło napięcia odniesienia.
+Do tego celu w zupełności wystarczy układ LM4041 wraz z precyzyjnym potencjometrem.
 
 \subsection{Dostrajanie}
 Szczególnie trudnym okazało się zapewnienie stabilnej pracy układu. 
@@ -268,8 +267,7 @@ ze względu na duży czas propagacji sygnału przez resztę układu.
 
 \section{Oprogramowanie}
 \label{sec:impl}
-Czas przejść do opisu kodu źródłowego.
-W pliku \verb|sine_tab.cpp| znajduje się definicja tabeli funkcji sinus. Składa się ona z $N_{smpl}=1024$ próbek, a wartość \verb|i|-tej próbki 
+W pliku \verb|sine_tab.cpp| znajduje się definicja tabeli wartości funkcji sinus. Składa się ona z $N_{smpl}=1024$ próbek, a wartość \verb|i|-tej próbki 
 zdefiniowana jest w następujący sposób:
 
 \begin{equation}
@@ -283,15 +281,16 @@ Każda próbka jest 8-bitową liczbą całkowitą z zakresu $\in \{1 \dots 255\}
 poza wartością $\sin (2 \pi)$. Następną próbkę stanowi wartość $\sin (0)$. Dzięki temu reprodukowany sygnał nie zawiera błędów co okres.
 
 Zadaniem oprogramowania mikrokontrolera pozostaje wczytanie kolejnych wartości z pamięci,
-a następnie ustawienie pinów na odpowiedni stan. Wykorzystując 8-bitową naturę architektury AVR
+a następnie przestawienie pinów w odpowiedni stan. Wykorzystując 8-bitową naturę architektury AVR
 możliwe jest ustawienie stanu całego rejestru (tj. grupy 8 pinów) poprzez pojedynczy zapis do 
 obszaru peryferialnego pamięci (Linia \ref{code:set_pin_reg})
 
-W tym miejscu napotykamy jednak pewien problem, synteza powyższego sygnału wymaga produkcji ponad miliona próbek na sekundę,
+W tym miejscu napotykamy jednak pewien problem - synteza powyższego sygnału wymaga produkcji ponad miliona próbek na sekundę,
 tym czasem zastosowany mikroprocesor jest przystosowany do pracy przy częstotliwości nie przekraczających \qty{24}{\MHz}.
 Przy zastosowanym generatorze kwarcowym o częstotliwości pracy \qty{12,288}{\MHz} oznacza to, że mamy dokładnie \textbf{12} cykli maszynowych
-na wygenerowanie następnej próbki, co więcej aby zachować precyzje częstotliwości musimy wykorzystać wszystkie 12 cykli za każdym razem.
-Stąd też decyzja o implementacji całego algorytmu bezpośrednio w niskopoziomowym assemblerze.
+na wygenerowanie następnej próbki. Co więcej, aby zachować precyzję częstotliwości musimy wykorzystać wszystkie 12 cykli za każdym razem.
+%Stąd też decyzja o implementacji całego algorytmu bezpośrednio w niskopoziomowym assemblerze.
+Stąd też, całego algorytm zaimplementowany został bezpośrednio w assembly.
 Pozwala to na dokładną kontrolę nad czasem wykonania całego cyklu, a jednocześnie umożliwia szereg optymalizacji
 będących poza zasięgiem kompilatora.
 
@@ -302,11 +301,11 @@ Problemem pozostaje jedynie wydajne zawijanie wskaźnika po dotarciu do 1024-tej
 Ponownie wykorzystując 8-bitową nature układów AVR, możliwe jest bardzo wydajne rozwiązanie tego problemu.
 
 Jednym z atrybutów udostępnianych przez kompilator GCC jest\\
-\verb| __attribute__((aligned (1024)))|, który pozwala na wymuszenie
-wyrównania pozycji pierwszego bajtu danej zmiennej do wielokrotności liczby podanej jako argument.
-Oznacza to iż pozycja tablicy w pamięci przyjmuje postać $A \times 1024$.
+\verb| __attribute__((aligned (X)))|, który pozwala na wymuszenie
+wyrównania pozycji pierwszego bajtu danej zmiennej do wielokrotności \verb|X|.
+Oznacza to, że pozycja tablicy w pamięci przyjmuje postać $A \times 1024$.
 
-Tak więc, niższy bajt 16-bitowego wskaźnika będzie ulegał stałym zmianą na całej swojej długości,
+Tak więc, niższy bajt 16-bitowego wskaźnika będzie ulegał stałym zmianom na całej swojej długości,
 natomiast w bajcie wyższym, dzięki wyrównaniu tabeli, zmieniać się będą jedynie dwa najniższe bity (Rys. \ref{fig:bits_ex}).
 
 \begin{figure}[h]
@@ -322,7 +321,7 @@ natomiast w bajcie wyższym, dzięki wyrównaniu tabeli, zmieniać się będą j
 	\label{fig:bits_ex}
 \end{figure}
 
-Jedyne co tak na prawdę musimy robić to nie pozwolić na zmianę stanu 6 najwyższych bitów wskaźnika.
+Zostaje tylko nie  pozwolić na zmianę stanu 6 najwyższych bitów wskaźnika.
 Możemy to osiągnąć używając sprytnej sztuczki, zajmującej łącznie 2 cykle zegarowe (Linia \ref{code:overflow_pointer}).
 
 \begin{equation}
@@ -333,15 +332,23 @@ Po pierwsze zerujemy sześć najwyższych bitów górnego rejestru instrukcją \
 Następnie instrukcja \verb|OR| przywraca poprawny stan wyższych bitów, 
 które na początku działania programu zostały zapisane w rejestrze 20 (Linijka \ref{code:set_r20_bp}).
 
+Powyższe podejście implementacyjne spełnia postawione wcześniej wymagania dotyczące szybkości działania.
+
+
+\subsection{Środowisko Deweloperskie}
+Wykorzystałem zintegrowane środowisko \href{https://platformio.org/}{PlatformIO}.
+Zapewnia ono pełną integrację otwartego zestawu narzędzi z edytorem VSCode.
+
 \subsection{Kod źródłowy}
 
 \inputminted[linenos=true,escapeinside=@@,fontfamily=phv]{asm}{../code/src/main.S}
+
 
 \section{Eksperymenty}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{img/experimental_setup.jpg}
-	\caption{złożony układ eksperymentalny}
+	\caption{Złożony układ eksperymentalny}
 	
 \end{figure}
 
@@ -355,13 +362,16 @@ Przedstawiony układ został przetestowany z następującymi różnicami względ
 Układ ATMega4809 zachowuje pełną kompatybilność kodu źródłowego z AVR32DA28,
 gdyż oba mikrokontrolery bazują na tej samej wersji architektury AVR.
 
-Generator w czasie pracy pobierał ok \qty{7}{\mA} Amplituda była poprawnie
-kontrolowana oraz zachowywała stabilność przy zmiennym obciążeniu w zakresie \qty{1}{\kohm}-\qty{10}{\kohm}.
-Układ stabilizował się po ok 1-2 sekundach od zmiany obciążenia.
+Generator w czasie pracy pobierał $\approx \qty{7}{\mA}$. Amplituda była poprawnie
+kontrolowana oraz zachowywała stabilność przy zmiennym obciążeniu w zakresie \qty{1}{\kohm} - \qty{10}{\kohm}.
+Układ stabilizował się po około 1-2 sekundach od zmiany obciążenia.
 
 Użyty oscyloskop nie pozwolił na użyteczny pomiar poziomu zniekształceń. 
 
 \section{Schemat i płytka drukowana}
+
+Schemat oraz płytka zostały wykonane przy użyciu otwartego programu KiCAD.
+Aby zachować czytelność, podzielony jest cztery oddzielne karty.
 
 \newpage
 \printbibliography[title=Źródła] %Prints bibliography

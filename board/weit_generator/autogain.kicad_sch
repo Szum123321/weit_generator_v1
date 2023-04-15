@@ -4,6 +4,13 @@
 
   (paper "A4")
 
+  (title_block
+    (title "Automatyczna kontrola amplitudy")
+    (date "2023-04-15")
+    (rev "1.0")
+    (comment 1 "Kondensatory polipropylenowe/polisertynowe")
+  )
+
   (lib_symbols
     (symbol "Amplifier_Operational:MCP6004" (pin_names (offset 0.127)) (in_bom yes) (on_board yes)
       (property "Reference" "U" (at 0 5.08 0)
@@ -783,19 +790,19 @@
     (uuid d4ebcfba-cea3-467b-8e49-664516e6a680)
   )
 
-  (text "Error amplifier" (at 156.845 86.36 0)
+  (text "Wzmacniacz błędu" (at 156.845 86.36 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 44a28287-5bcd-434e-8d6c-a8b8f601b3fc)
   )
-  (text "RV2 sets coupling strength" (at 186.69 87.63 0)
+  (text "RV2 dostraja siłę sprzężenia" (at 186.69 87.63 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 8ab3b36c-1664-4442-89a7-e80f26f589bd)
   )
-  (text "Compensation Network" (at 153.035 128.905 0)
+  (text "Sieć kompensacyjna\n" (at 153.035 128.905 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid b2dd212d-dd30-42f4-b09b-d556b15298f5)
   )
-  (text "Peak detector\n" (at 73.66 79.375 0)
+  (text "Detektro szczytowy\n" (at 74.295 81.915 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid c896ba7c-d382-4e22-9ed9-dc2fe179ecb4)
   )
