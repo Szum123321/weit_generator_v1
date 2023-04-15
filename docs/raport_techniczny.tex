@@ -46,14 +46,11 @@
 \hrule
 
 \begin{abstract}
-	Głównym celem poniższej konstrukcji jest otrzymanie sygnału możliwie najwyższej jakości, 
-	zdefiniowanych w założeniach konkursowych, tzn. dokładność częstotliwości, stopień zniekształceń harmonicznych 
-	oraz dokładność amplitudy sygnału.
+	Dokumen zawiera opis budowy i działania generatora przebiegu \qty{1}{\kHz}.
 \end{abstract}
 
 \begin{center}
 	\includegraphics[width=0.9\textwidth]{img/board_render_1.jpg}
-
 \end{center}
 
 %TODO: fancy graphics
@@ -69,8 +66,7 @@
 Aby wygenerować maksymalnie stabilny i dokładny względem częstotliwości sygnał, 
 zdecydowałem się na wykorzystanie techniki \verb|Bezpośredniej Syntezy Cyfrowej|, 
 gdzie mikroprocesor wraz z układem Przetwornika Cyfrowo-Analogowego (DAC) generuje sygnał zbliżony do sygnału oczekiwanego. 
-Umożliwia to zastosowanie wysokiej jakości generatora kwarcowego, 
-jako głównego źródła odniesienia, o precyzji rzędu 50ppm\footnote{Części na milion}, 
+Umożliwia to zastosowanie wysokiej jakości generatora kwarcowego, o precyzji rzędu 50ppm\footnote{Części na milion}, 
 w całym zakresie temperatur. Oznacza to, iż częstotliwość uzyskanego sygnału nie będzie odbiegać o więcej niż $\pm$\qty{50}{\mHz} od wartości oczekiwanej. 
 
 \subsection{Mikrokontroler}
@@ -79,8 +75,8 @@ W porównaniu ze starszymi generacjami, producent dopuszcza pracę układu przy 
 Jednocześnie dokonana została unifikacja modelu pamięci, co okaże być się przydatne przy pisaniu oprogramowania(\ref{sec:impl}).
 
 \subsection{Przetwornik Cyfrowo-Analogowy}
-Do implementacji przetwornika zrealizowany został układ drabinki R-2R (Rys.\ref{fig:r-2r-ladder}).
-Umożliwiając łatwą zmianę wartości liczbowej, przedstawionej jako liczba binarna na pinach mikrokontrolera, 
+Do implementacji przetwornika zrealizowany został układ drabinki R-2R (Rys.\ref{fig:r-2r-ladder}),
+umożliwiając łatwą zmianę wartości liczbowej, przedstawionej jako liczba binarna na pinach mikrokontrolera, 
 na ułamek napięcia zasilania.
 
 \begin{figure}[h]
@@ -120,7 +116,7 @@ na ułamek napięcia zasilania.
 		% Draw ground and Vout
 		\draw (down contact 0)  to [R=2R, *-*] (ground) node[ground] {}
 			  (down contact -1) to [short, *-o] ($(down contact -1)+(1,0)$)
-								node[anchor=west]  {$V_{out}$};
+								node[anchor=west]  {$V_{wyj}$};
 	
 		% Draw ldots
 		\draw[fill=black,decorate,decoration={shape backgrounds,shape=circle,shape size=1mm}]
@@ -137,7 +133,7 @@ na ułamek napięcia zasilania.
 Napięcie na węźle wyjściowym przetwornika można opisać w następujący sposób:
 
 \[
-	V_{out}=V_{ref} \times \frac{a_0 \times 2^0 + a_1 \times 2^1 + a_2 \times 2^2 + ... + a_{N - 1} \times 2^{N- 1}}{2^N}
+	V_{wyj}=V_{ref} \times \frac{a_0 \times 2^0 + a_1 \times 2^1 + a_2 \times 2^2 + ... + a_{N - 1} \times 2^{N- 1}}{2^N}
 \]
 
 Jak widać, przy $N=8$, przetwornik ten pozwala na uzyskanie 256 różnych wartości. Dla $V_{ref}=\qty{3}{\volt}$,
@@ -153,58 +149,28 @@ Aby zachować użyteczność najniższych bitów, precyzja wykorzystanych rezyst
 $\frac{1}{2^N} \times 100\unit{\percent} \approx \qty{0,3}{\%}$. Na szczęście,
 w sprzedaży dostępne są rezystory przeznaczone do montażu powierzchniowego o precyzji \qty{0,1}{\%}.
 
-\subsection{Analiza sygnału wyjściowego}
+\subsection{Analiza zniekształceń przetwornika}
 
 Sygnał generowany w ten sposób nie opowiada jednak perfekcyjnej sinusoidzie (Rys. \ref{fig:sine-stepped}).
 Obecne jest tzw. zniekształcenie kwantyzacji, wynikające z faktu, iż sygnał złożony jest 
 z serii dyskretnych wartości. Jednak jeśli dokładnie przyjrzymy się różnicy pomiędzy naszym sygnałem
-a idealnej sinusoidzie, to okaże się, że amplituda takiego sygnału jest nie wielka 
-($\Delta V \le \frac{V_{ref}}{2^N}$), a także składa się on z częstotliwości wielokrotnie większych niż
-częstotliwość fundamentalna generowanego sygnału.
+a idealnej sinusoidzie, to okaże się, że następna składowa generowanego sygnału ma częstotliwość $f_1 = f_0 \times N_{smpl}$.
+
+Co więcej, stosunek mocy całego sygnału do mocy wyższych składowych dla konwertera z N-bitami wynosi
+\begin{equation}
+	SQR = 1.76 + 6.02 \times N (dB)
+\end{equation}
+
+Przy $N=8$ oraz $N_{smpl}=1024$ oznacza to iż całkowita moc zniekształceń względem sygnału fundamentalnego wynosi \qty{-50}{\dB}, 
+oraz jest rozłożona w paśmie megahercowym.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.6\textwidth]{sine_steps.png}
-	\caption[short]{Przebieg sinusoidy generowanej przy pomocy przetwornika R-2R.}
+	%\includegraphics[width=0.55\textwidth]{img/qunatization_error_fig.jpg}
+	\caption{Przebieg sinusoidy generowanej przy pomocy przetwornika R-2R.}
 	\label{fig:sine-stepped}
 \end{figure}
-
-
-Możemy uznać, iż dobrym przybliżeniem takiego sygnału będzie suma sinusoidy o amplitudzie równej połowie napięcia zasilania $V_{ref}$
-i o częstotliwości $f_0$ oraz sygnału prostokątnego o częstotliwości $f_0 \times N_{smpl}$ i amplitudzie $0.5 \times \frac{V_{ref}}{2^N}$, 
-gdzie $N_{smpl}$ oznacza ilość dyskretnych zmian napięcia w czasie jednego okresu.
-
-
-\iffalse
-\begin{lemma}
-		Funkcje okresową $f(x)$ można przedstawić jako szereg fouriera
-\end{lemma}
-
-\begin{lemma}
-	W przypadku funkcji kwadratowej
-	
-	\begin{equation}
-		rect(x) = (-1)^{\lfloor	2 f_0 x \rfloor}
-	\end{equation}
-	Jej szereg fouriera wgląda następująco:
-	\begin{equation}
-			f(x) = \frac{4}{\pi} \sum_{n=1,2,3,...}^{\infty} \frac{1}{n} \sin \left( n \pi x \right)
-	\end{equation}
-\end{lemma}
-
-\begin{theorem}
-Tak więc funkcją przybliżającą cały sygnał jest
-	\begin{equation}
-		\omega = 2 \pi f_0 
-	\end{equation}
-	\begin{equation}
-		V(t) = \frac{V_{ref}}{2} \left( \sin \left( \omega \times t \right) + \frac{1}{ 2^{N - 2}\pi} \sum_{n=1,3,5...}^{\infty} \frac{1}{n} \sin \left( \omega \times N_{smpl} \times n \times t \right) \right)
-	\end{equation}
-\end{theorem}
-\fi
-
-Widzimy więc że że częstotliwość już częstotliwość drugiej składowej jest $N_{smpl}$ - krotnie większa, a jej amplituda $2^{N -2}\pi$-krotnie mniejsza w porównaniu ze składową fundamentalną.
-Oznacza to, iż przy zastosowaniu filtru dolnoprzepustowego niskiego stopnia, możliwe jest efektywne usunięcie składowych wyższej częstotliwości.
 
 \section{Kształtowanie}
 Mimo wszystko należy usunąć składowe wyższej częstotliwości. Funkcje tą realizuje kondensator \verb|C2| (Rys. \ref{fig:filter}).
@@ -219,14 +185,13 @@ Tłumienia tego dokonują \verb|C1, R1, R2|, zachowując wartość środkową na
 	\label{fig:filter}
 \end{figure}
 
-
 \section{Kontrola Amplitudy}
 
-Ostatnią zmienną którą należy rozpatrzyć jest amplituda sygnału wyjściowego. Na tym etapie amplituda sygnału jest większa od oczekiwanej wartości
+Ostatnią zmienną którą należy rozpatrzyć jest amplituda sygnału wyjściowego. Na tym etapie poziom sygnału jest wyższy od oczekiwanej wartości
 \qty{0,5}{\V}. Potrzebna jest więc metoda dokładnego tłumienia, nie wprowadzająca dodatkowych zniekształceń i zakłócenia.
 
-Rozwiązanie oparte o nawet precyzyjny potencjometr pozostaje jednak wrażliwe na takie zmienne jak napięcie zasilania, 
-czy też dryft parametrów elementów związany ze zmianą temperatury.
+Rozwiązanie oparte o nawet precyzyjny potencjometr pozostaje jednak wrażliwe na zmianę absolutnej wartości napięcia zasilania,
+czy też dryft elementów związany ze zmianą temperatury.
 
 Tak więc, niezbędny jest układ aktywnie korygujący amplitudę sygnału.
 Cyfrowa implementacja takiego rozwiązania nie wchodzi w gre, 
@@ -259,9 +224,7 @@ Wymagany jest układ umożliwiający tłumienie sygnału zmiennego względem syg
 
 Fizyczna implementacja takiego układu okazuje się być niebanalna.
 Możliwy jest układ realizujący operacje mnożenia wartości sygnałów. 
-Jego realizacja jednak jest wysoce złożona i wymaga relatywnie dużo części, 
-ponieważ w jego skład wchodzą układy wyznaczające logarytm naturalny obu wartości, dodające te wartości do siebie,
-a na koniec wyznaczające funkcje wykładniczą $e^x$ tej sumy.
+Jego realizacja jednak jest wysoce złożona i wymaga relatywnie dużo części.
 
 Alternatywna metoda wykorzystuje element zmieniający swój opór elektryczny względem jakiegoś innego czynnika.
 Przykładem historycznej realizacji takiego układu jest zastosowanie niewielkiej łapmy żarowej,
@@ -269,10 +232,11 @@ której opór włókna jest wprost proporcjonalny do jego temperatury.
 
 Istnieje jednak znacznie prostsze i wydajniejsze rozwiązanie.
 
-Popularnym elementem o zmiennym oporze jest fotorezystor. W przeciwieństwie do innych elementów
-światłoczułych, przy stałym natężeniu światła, zachowuje się on jak faktyczny rezystor,
-tzn. prąd przepływający jest wprost proporcjonalny do napięcia i odwrotnie do jego oporu
-$I \propto \frac{V}{R_{\phi}}$.
+Popularnym elementem o zmiennym oporze jest fotorezystor. W przeciwieństwie do 
+np. tranzystorów jFET, przy stałym natężeniu światła, zachowuje się on jak faktyczny rezystor,
+tzn. prąd przepływający jest wprost proporcjonalny do przyłożonego napięcia
+$I \propto V$, tym samym jego zastosowanie nie wprowadzi zniekształceń mogących wynikać
+z nie liniowości elementów półprzewodnikowych.
 
 Tak więc, jeśli zamknie się fotorezystor w obudowie światłoszczelnej wraz z diodą LED,
 uzyskamy układ o zmiennym oporze elektrycznym, kontrolowany przez prąd diody\footnote{Zakładam $\phi \propto I$}.
@@ -293,30 +257,30 @@ pętli sprzężenia zwrotnego.
 \end{equation}
 
 \subsection{Źródło odniesienia}
-W tym momęcie potrzebne jest jedynie stabilne oraz dostrajalne źródło napięcia odniesienia.
+W tym momencie potrzebne jest jedynie stabilne oraz dostrajalne źródło napięcia odniesienia.
 Do tego celu z zupełności wystarczy układ LM4041 wraz z precyzyjnym potencjometrem.
 
 \subsection{Dostrajanie}
 Szczególnie trudnym okazało się zapewnienie stabilnej pracy układu. 
 Wartości elementów w pętli kompensacji zostały w większości dobrane empirycznie.
 Konieczne było zastosowanie dużej pojemności kondensatorów elektrolitycznych, 
-ze względu na duży czas propagacji sygnału błędu przez tłumik, filtr oraz detektor.
+ze względu na duży czas propagacji sygnału przez resztę układu.
 
 \section{Oprogramowanie}
 \label{sec:impl}
 Czas przejść do opisu kodu źródłowego.
-W pliku \verb|sine_tab.cpp| znajduje się definicja tabeli funkcji sinus. Składa się ona z \verb|1024| próbek, a wartość \verb|i|-tej próbki 
+W pliku \verb|sine_tab.cpp| znajduje się definicja tabeli funkcji sinus. Składa się ona z $N_{smpl}=1024$ próbek, a wartość \verb|i|-tej próbki 
 zdefiniowana jest w następujący sposób:
 
 \begin{equation}
-	f(i) = (2^N - 1) + \left\lfloor (2^N - 1) \times \sin \left(\frac{2 \pi \times i}{N_{smpl}}\right)\right\rceil
+	f(i) = 2^N + \left\lfloor (2^N - 1) \times \sin \left(\frac{2 \pi \times i}{N_{smpl}}\right)\right\rceil
 \end{equation}
 \begin{equation}
 	f(i) = 128 + \left\lfloor 127 \times \sin \left(\frac{2 \pi \times i}{1024}\right)\right\rceil
 \end{equation}
 
 Każda próbka jest 8-bitową liczbą całkowitą z zakresu $\in \{1 \dots 255\}$, jednocześnie tabela przedstawia cały jeden okres funkcji sinus,
-poza wartością $\sin (2 \pi)$. Następną próbkę stanowi wartość $\sin (0)$. Dzięki temu reprodukowany sygnał nie zawiera przeskoku co cały okres.
+poza wartością $\sin (2 \pi)$. Następną próbkę stanowi wartość $\sin (0)$. Dzięki temu reprodukowany sygnał nie zawiera błędów co okres.
 
 Zadaniem oprogramowania mikrokontrolera pozostaje wczytanie kolejnych wartości z pamięci,
 a następnie ustawienie pinów na odpowiedni stan. Wykorzystując 8-bitową naturę architektury AVR
@@ -340,7 +304,7 @@ Ponownie wykorzystując 8-bitową nature układów AVR, możliwe jest bardzo wyd
 Jednym z atrybutów udostępnianych przez kompilator GCC jest\\
 \verb| __attribute__((aligned (1024)))|, który pozwala na wymuszenie
 wyrównania pozycji pierwszego bajtu danej zmiennej do wielokrotności liczby podanej jako argument.
-Oznacza to iż pozycja tablicy przyjmuje postać $A \times 1024$.
+Oznacza to iż pozycja tablicy w pamięci przyjmuje postać $A \times 1024$.
 
 Tak więc, niższy bajt 16-bitowego wskaźnika będzie ulegał stałym zmianą na całej swojej długości,
 natomiast w bajcie wyższym, dzięki wyrównaniu tabeli, zmieniać się będą jedynie dwa najniższe bity (Rys. \ref{fig:bits_ex}).
@@ -358,41 +322,16 @@ natomiast w bajcie wyższym, dzięki wyrównaniu tabeli, zmieniać się będą j
 	\label{fig:bits_ex}
 \end{figure}
 
-Tak więc jedyne co tak na prawdę musimy robić to nie pozwolić na zmianę stanu 6 najwyższych bitów wskaźnika.
+Jedyne co tak na prawdę musimy robić to nie pozwolić na zmianę stanu 6 najwyższych bitów wskaźnika.
 Możemy to osiągnąć używając sprytnej sztuczki, zajmującej łącznie 2 cykle zegarowe (Linia \ref{code:overflow_pointer}).
 
 \begin{equation}
 	r31' = \left( \left( r31 \land 11_{bin} \right) \lor r20 \right)
 \end{equation}
 
-Po pierwsze zerujemy sześć najwyższych bitów górnego rejestru instrukcją \verb|ANDI| - (And with Immidiate) z liczbą $3_{dec}$.
+Po pierwsze zerujemy sześć najwyższych bitów górnego rejestru instrukcją \verb|ANDI| z liczbą $3_{dec}$.
 Następnie instrukcja \verb|OR| przywraca poprawny stan wyższych bitów, 
 które na początku działania programu zostały zapisane w rejestrze 20 (Linijka \ref{code:set_r20_bp}).
-
-
-\iffalse
-\subsection{Dithering}
-Techniką mogącą poprawić charakterystykę szumową sygnału jest tzw. Dihering. polegającą na uprzypadkowieniu najniższych bitów próbek.
-Pozwala to na gładszy rozkład energii składowych wynikających z kwantyfikacji sygnału (Rys. \ref{fig:sine-stepped})
-Korzyści jej stosowania nie zostały jeszcze ustalone na tym etapie projektu, jednak możliwa okazała się jej implementacja,
-pomimo wysoce ograniczonych zasobów obliczeniowych.
-
-W celu generowania przypadkowych bitów zaimplementowany został prosty generator LCG (Linia \ref{code:dither})
-
-\begin{equation}
-	r0'=3 \times r0 \mod 256
-\end{equation}
-
-Do tego celu wykorzystane zostały właściwości instrukcji \verb |MUL| mnożącej wartość dwóch rejestrów 8-bitowych,
-a otrzymując 16-bitowy wynik zawarty w parze rejestrów \verb|r1, r0|.
-
-Teraz jako wynik przypadkowej operacji zostaje wybrany 9-ty bit wyniku operacji $r0 \times 3$.
-Zawarty jest w rejestrze \verb|r1|. Następnie XOR-owany jest z wartością następnej próbki zawartej w \verb|r2|
-
-\begin{equation}
-	r2' = r2 \oplus \left( \left( (r0 \times 3) \gg 8 \right) \land 1 \right)
-\end{equation}
-\fi
 
 \subsection{Kod źródłowy}
 
@@ -406,21 +345,21 @@ Zawarty jest w rejestrze \verb|r1|. Następnie XOR-owany jest z wartością nast
 	
 \end{figure}
 
-Przedstawiony układ został przetestowany z następującymi zmianami:
+Przedstawiony układ został przetestowany z następującymi różnicami względem schematu:
 
 \begin{itemize}
 	\item Mikrokontroler: ATMega4809
 	\item Rezystory drabiny R-2R: \qty{10}{\kohm}, \qty{20}{\kohm}
 \end{itemize}
 
-Układ ATMega4809 zachowuje pełną kompatybilność kodu źródłowego z AVR32DA28. 
-Jednoczeście oba mikrokontrolery bazują na tej samej wersji architektury AVR.
+Układ ATMega4809 zachowuje pełną kompatybilność kodu źródłowego z AVR32DA28,
+gdyż oba mikrokontrolery bazują na tej samej wersji architektury AVR.
 
-Zaobserwowane parametry pracy:
-\begin{itemize}
-	\item Pobór prądu przy napięciu zasilania \qty{3}{\V}: \qty{7}{\mA}
-\end{itemize}
+Generator w czasie pracy pobierał ok \qty{7}{\mA} Amplituda była poprawnie
+kontrolowana oraz zachowywała stabilność przy zmiennym obciążeniu w zakresie \qty{1}{\kohm}-\qty{10}{\kohm}.
+Układ stabilizował się po ok 1-2 sekundach od zmiany obciążenia.
 
+Użyty oscyloskop nie pozwolił na użyteczny pomiar poziomu zniekształceń. 
 
 \newpage
 \printbibliography[title=Źródła] %Prints bibliography
