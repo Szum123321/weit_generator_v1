@@ -391,7 +391,7 @@
     (uuid f2ae5d9c-7e90-40b2-b3d6-1311e5686976)
   )
 
-  (text "RC Band-pass filter" (at 118.745 75.565 0)
+  (text "Filtr krawędziowy RC" (at 132.715 79.375 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 561ba315-5eb0-4b4f-bb83-522ecf7c4597)
   )

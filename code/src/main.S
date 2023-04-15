@@ -13,16 +13,16 @@ main:
 	ldi r16, 0xD8; MAGICZNA WARTOŚĆ do odblokowywania konfiguracji
 	ldi r17, 0x03; CLKOUT=0 | CLKSEL=EXTCLK
 	out CPU_CCP, r16; odblokuj konfiguracje systemową
-	sts CLKCTRL_MCLKCTRLA, r17; ustaw wejście zegara
+	sts CLKCTRL_MCLKCTRLA, r17; użyj zewnętrzengo zegara
 
 	out CPU_CCP, r16
-	sts CLKCTRL_MCLKCTRLB, r1; wyłącz skalowanie 
+	sts CLKCTRL_MCLKCTRLB, r1; wyłącz skalowanie zegara
 
 	ldi r16, 0xFF
 	out PORT_DIR r16 ;ustaw piny na wyjście
 	out PORT_OUT, r1
 
-	;wczytaj wskaźnik do SINE_TAB do pary rejestrów Z (r30, r31) @\label{code:set_r20_bp}@
+	;wczytaj wskaźnik SINE_TAB do pary rejestrów Z (r30, r31) @\label{code:set_r20_bp}@
 	ldi r20, hi8(SINE_TAB)
 	mov r31, r20
 	mov r30, r1

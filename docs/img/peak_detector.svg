@@ -7,8 +7,32 @@
    viewBox="0 0 83.726242 28.264832"
    version="1.1"
    id="svg7825"
+   sodipodi:docname="peak_detector.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview983"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="16.447164"
+     inkscape:cx="57.426315"
+     inkscape:cy="26.873935"
+     inkscape:window-width="1707"
+     inkscape:window-height="1038"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g2430" />
   <defs
      id="defs7822" />
   <g
@@ -955,10 +979,12 @@
            lengthAdjust="spacingAndGlyphs"
            text-anchor="middle"
            opacity="0"
-           id="text2370">R1</text>
+           id="text2370"
+           transform="translate(0.85260395)">R1</text>
         <g
            class="stroked-text"
-           id="g2406">
+           id="g2406"
+           transform="translate(0.85260395)">
           <desc
              id="desc2372">R1</desc>
           <path

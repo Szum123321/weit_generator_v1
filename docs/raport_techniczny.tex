@@ -175,7 +175,7 @@ oraz jest rozłożona w paśmie megahercowym.
 \section{Kształtowanie}
 Mimo wszystko należy usunąć składowe wyższej częstotliwości. Funkcje tą realizuje kondensator \verb|C2| (Rys. \ref{fig:filter}).
 
-Dodatkowo, rzeczywiste wzmacniacze operacyjne nie są wstanie generować sygnałów bardzo bliskich ($ |V_{out} - V_{bus}| <\qty{300}{\mV}$) szyn zasilania.
+Dodatkowo, rzeczywiste wzmacniacze operacyjne nie są wstanie generować sygnałów bardzo bliskich ($ |V_{wyj} - V_{zasi}| <\qty{300}{\mV}$) szyn zasilania.
 Tłumienia tego dokonują komponenty pasywne \verb|C1, R1, R2|, zachowując wartość środkową sygnału na poziomie \qty{1,5}{\V}
 
 \begin{figure}[h]
@@ -343,6 +343,7 @@ Zapewnia ono pełną integrację otwartego zestawu narzędzi z edytorem VSCode.
 
 \inputminted[linenos=true,escapeinside=@@,fontfamily=phv]{asm}{../code/src/main.S}
 
+\newpage
 
 \section{Eksperymenty}
 \begin{figure}[h]
