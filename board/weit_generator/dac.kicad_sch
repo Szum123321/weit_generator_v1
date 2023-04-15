@@ -273,7 +273,7 @@
   (symbol (lib_id "Device:R") (at 152.4 66.04 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 00af5c19-f02f-47a1-aff8-c54d2d339344)
-    (property "Reference" "R12" (at 154.94 65.405 0)
+    (property "Reference" "R14" (at 154.94 65.405 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1k" (at 154.94 67.945 0)
@@ -290,7 +290,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R12") (unit 1)
+          (reference "R14") (unit 1)
         )
       )
     )
@@ -299,7 +299,7 @@
   (symbol (lib_id "Device:R") (at 148.59 77.47 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 05c861a8-6ddf-4f2a-876e-baf44729e88a)
-    (property "Reference" "R6" (at 148.59 72.39 90)
+    (property "Reference" "R16" (at 148.59 72.39 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "2k" (at 148.59 74.93 90)
@@ -316,7 +316,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R6") (unit 1)
+          (reference "R16") (unit 1)
         )
       )
     )
@@ -325,7 +325,7 @@
   (symbol (lib_id "Device:R") (at 152.4 81.28 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 0eed5012-7815-4245-a779-f1306f8e08a2)
-    (property "Reference" "R14" (at 154.94 80.645 0)
+    (property "Reference" "R13" (at 154.94 80.645 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1k" (at 154.94 83.185 0)
@@ -342,7 +342,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R14") (unit 1)
+          (reference "R13") (unit 1)
         )
       )
     )
@@ -351,7 +351,7 @@
   (symbol (lib_id "Device:R") (at 152.4 73.66 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 16c15e54-155f-4e29-a4e5-688d351f7ccd)
-    (property "Reference" "R13" (at 154.94 73.025 0)
+    (property "Reference" "R12" (at 154.94 73.025 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1k" (at 154.94 75.565 0)
@@ -368,7 +368,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R13") (unit 1)
+          (reference "R12") (unit 1)
         )
       )
     )
@@ -402,7 +402,7 @@
   (symbol (lib_id "Device:R") (at 152.4 88.9 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 2eea8cb6-0e41-4572-89c5-6b9e1a2dd9e9)
-    (property "Reference" "R15" (at 154.94 88.265 0)
+    (property "Reference" "R7" (at 154.94 88.265 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1k" (at 154.94 90.805 0)
@@ -419,7 +419,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R15") (unit 1)
+          (reference "R7") (unit 1)
         )
       )
     )
@@ -428,7 +428,7 @@
   (symbol (lib_id "Device:R") (at 152.4 96.52 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 45ea01ee-d3c4-4317-8bcc-539487a34658)
-    (property "Reference" "R16" (at 154.94 95.885 0)
+    (property "Reference" "R5" (at 154.94 95.885 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1k" (at 154.94 98.425 0)
@@ -445,7 +445,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R16") (unit 1)
+          (reference "R5") (unit 1)
         )
       )
     )
@@ -454,7 +454,7 @@
   (symbol (lib_id "Device:R") (at 148.59 62.23 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 47de6ad4-83ac-401e-a2f8-d3ab41559509)
-    (property "Reference" "R4" (at 148.59 57.15 90)
+    (property "Reference" "R11" (at 148.59 57.15 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "2k" (at 148.59 59.69 90)
@@ -471,7 +471,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R4") (unit 1)
+          (reference "R11") (unit 1)
         )
       )
     )
@@ -480,7 +480,7 @@
   (symbol (lib_id "Device:R") (at 148.59 107.95 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5e1aabb5-ea2b-4545-a227-dde9ac12b260)
-    (property "Reference" "R10" (at 148.59 102.87 90)
+    (property "Reference" "R1" (at 148.59 102.87 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "2k" (at 148.59 105.41 90)
@@ -497,7 +497,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R10") (unit 1)
+          (reference "R1") (unit 1)
         )
       )
     )
@@ -506,7 +506,7 @@
   (symbol (lib_id "Device:R") (at 152.4 104.14 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 93dc6534-a9c8-4973-bf16-642903b674e0)
-    (property "Reference" "R17" (at 154.94 103.505 0)
+    (property "Reference" "R2" (at 154.94 103.505 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1k" (at 154.94 106.045 0)
@@ -523,7 +523,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R17") (unit 1)
+          (reference "R2") (unit 1)
         )
       )
     )
@@ -532,7 +532,7 @@
   (symbol (lib_id "Device:R") (at 148.59 92.71 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 9593d64e-69eb-4e68-a798-efe08c5f9298)
-    (property "Reference" "R8" (at 148.59 87.63 90)
+    (property "Reference" "R9" (at 148.59 87.63 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "2k" (at 148.59 90.17 90)
@@ -549,7 +549,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R8") (unit 1)
+          (reference "R9") (unit 1)
         )
       )
     )
@@ -558,7 +558,7 @@
   (symbol (lib_id "Device:R") (at 148.59 100.33 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 9e6c6417-8e7a-4118-8aa3-035cc4b229d2)
-    (property "Reference" "R9" (at 148.59 95.25 90)
+    (property "Reference" "R6" (at 148.59 95.25 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "2k" (at 148.59 97.79 90)
@@ -575,7 +575,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R9") (unit 1)
+          (reference "R6") (unit 1)
         )
       )
     )
@@ -584,7 +584,7 @@
   (symbol (lib_id "Device:R") (at 148.59 115.57 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid bb8f7e6d-36ed-4c36-8506-484e7c017c32)
-    (property "Reference" "R11" (at 148.59 110.49 90)
+    (property "Reference" "R3" (at 148.59 110.49 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "2k" (at 148.59 113.03 90)
@@ -601,7 +601,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R11") (unit 1)
+          (reference "R3") (unit 1)
         )
       )
     )
@@ -610,7 +610,7 @@
   (symbol (lib_id "Device:R") (at 148.59 69.85 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid c5a0060f-2cfd-4cee-941d-b7e438b2ea84)
-    (property "Reference" "R5" (at 148.59 64.77 90)
+    (property "Reference" "R18" (at 148.59 64.77 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "2k" (at 148.59 67.31 90)
@@ -627,7 +627,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R5") (unit 1)
+          (reference "R18") (unit 1)
         )
       )
     )
@@ -636,7 +636,7 @@
   (symbol (lib_id "Device:R") (at 152.4 111.76 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid cd3105aa-c3c0-4e6e-9409-b72d702e853e)
-    (property "Reference" "R18" (at 154.94 111.125 0)
+    (property "Reference" "R8" (at 154.94 111.125 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1k" (at 154.94 113.665 0)
@@ -653,7 +653,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R18") (unit 1)
+          (reference "R8") (unit 1)
         )
       )
     )
@@ -662,7 +662,7 @@
   (symbol (lib_id "Device:R") (at 152.4 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid d8608871-85cf-4581-89d0-b5acdf2eaac4)
-    (property "Reference" "R19" (at 154.94 118.745 0)
+    (property "Reference" "R4" (at 154.94 118.745 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "2k" (at 154.94 121.285 0)
@@ -679,7 +679,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R19") (unit 1)
+          (reference "R4") (unit 1)
         )
       )
     )
@@ -688,7 +688,7 @@
   (symbol (lib_id "Device:R") (at 148.59 85.09 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid e26e0b7a-0bac-43e0-8941-1ed18390c3ac)
-    (property "Reference" "R7" (at 148.59 80.01 90)
+    (property "Reference" "R10" (at 148.59 80.01 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "2k" (at 148.59 82.55 90)
@@ -705,7 +705,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/266e0405-9c38-453c-b6b7-2329d65e961f"
-          (reference "R7") (unit 1)
+          (reference "R10") (unit 1)
         )
       )
     )

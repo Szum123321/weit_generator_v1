@@ -835,7 +835,7 @@
           (reference "C?") (unit 1)
         )
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/97b440c2-49e0-43c1-8dbd-070a3fa32fe0"
-          (reference "C10") (unit 1)
+          (reference "C13") (unit 1)
         )
       )
     )
@@ -899,7 +899,7 @@
   (symbol (lib_id "Device:R") (at 153.67 112.395 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 236b0c3e-7106-4b90-82e0-15c88ff7c180)
-    (property "Reference" "R26" (at 153.543 107.315 90)
+    (property "Reference" "R25" (at 153.543 107.315 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "10k" (at 153.543 109.855 90)
@@ -916,7 +916,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/97b440c2-49e0-43c1-8dbd-070a3fa32fe0"
-          (reference "R26") (unit 1)
+          (reference "R25") (unit 1)
         )
       )
     )
@@ -1013,7 +1013,7 @@
           (reference "U?") (unit 3)
         )
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/97b440c2-49e0-43c1-8dbd-070a3fa32fe0"
-          (reference "U1") (unit 3)
+          (reference "U2") (unit 3)
         )
       )
     )
@@ -1042,7 +1042,7 @@
           (reference "R?") (unit 1)
         )
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/97b440c2-49e0-43c1-8dbd-070a3fa32fe0"
-          (reference "R25") (unit 1)
+          (reference "R29") (unit 1)
         )
       )
     )
@@ -1099,7 +1099,7 @@
           (reference "R?") (unit 1)
         )
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/97b440c2-49e0-43c1-8dbd-070a3fa32fe0"
-          (reference "R23") (unit 1)
+          (reference "R22") (unit 1)
         )
       )
     )
@@ -1108,7 +1108,7 @@
   (symbol (lib_id "Device:C") (at 157.48 118.745 90) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 6db391eb-a00f-4fbe-8fca-57c2dc09107c)
-    (property "Reference" "C11" (at 157.48 124.587 90)
+    (property "Reference" "C9" (at 157.48 124.587 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1u" (at 157.48 122.047 90)
@@ -1131,7 +1131,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/97b440c2-49e0-43c1-8dbd-070a3fa32fe0"
-          (reference "C11") (unit 1)
+          (reference "C9") (unit 1)
         )
       )
     )
@@ -1223,7 +1223,7 @@
   (symbol (lib_id "Device:C_Polarized") (at 176.53 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 857c413c-b509-484b-b0ff-81ca8593eda4)
-    (property "Reference" "C13" (at 179.705 107.696 0)
+    (property "Reference" "C11" (at 179.705 107.696 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100u" (at 179.705 110.236 0)
@@ -1240,7 +1240,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/97b440c2-49e0-43c1-8dbd-070a3fa32fe0"
-          (reference "C13") (unit 1)
+          (reference "C11") (unit 1)
         )
       )
     )
@@ -1331,7 +1331,7 @@
   (symbol (lib_id "Device:R") (at 98.425 95.25 270) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b561170d-2476-4fae-95d2-57377a495505)
-    (property "Reference" "R24" (at 98.425 90.17 90)
+    (property "Reference" "R28" (at 98.425 90.17 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "100" (at 98.425 92.71 90)
@@ -1348,7 +1348,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/97b440c2-49e0-43c1-8dbd-070a3fa32fe0"
-          (reference "R24") (unit 1)
+          (reference "R28") (unit 1)
         )
       )
     )
@@ -1357,7 +1357,7 @@
   (symbol (lib_id "Device:R") (at 224.155 97.155 90) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c1aed544-f96e-4d47-a557-ce683a9e643f)
-    (property "Reference" "R29" (at 224.155 92.075 90)
+    (property "Reference" "R24" (at 224.155 92.075 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "100" (at 224.155 94.615 90)
@@ -1374,7 +1374,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/97b440c2-49e0-43c1-8dbd-070a3fa32fe0"
-          (reference "R29") (unit 1)
+          (reference "R24") (unit 1)
         )
       )
     )
@@ -1493,7 +1493,7 @@
   (symbol (lib_id "Device:R") (at 200.66 104.775 270) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f89d4aed-0ef8-4692-91f3-ab39cc70ef60)
-    (property "Reference" "R28" (at 200.66 99.695 90)
+    (property "Reference" "R26" (at 200.66 99.695 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "100" (at 200.66 102.235 90)
@@ -1510,7 +1510,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/97b440c2-49e0-43c1-8dbd-070a3fa32fe0"
-          (reference "R28") (unit 1)
+          (reference "R26") (unit 1)
         )
       )
     )
@@ -1551,7 +1551,7 @@
           (reference "U?") (unit 4)
         )
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/97b440c2-49e0-43c1-8dbd-070a3fa32fe0"
-          (reference "U1") (unit 4)
+          (reference "U2") (unit 4)
         )
       )
     )

@@ -182,7 +182,7 @@
     (property "ki_keywords" "R res resistor")
     (path "/f67950ca-5110-4cdd-87f0-1ae5b2efde34")
     (attr through_hole)
-    (fp_text reference "R15" (at 0.845 2.505) (layer "F.SilkS")
+    (fp_text reference "R15" (at 1.045 2.705 90) (layer "F.SilkS")
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 6b365f05-0c21-4ab2-8879-aafd4232db46)
     )

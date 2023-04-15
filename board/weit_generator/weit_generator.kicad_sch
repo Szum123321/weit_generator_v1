@@ -1405,7 +1405,7 @@
   (symbol (lib_id "Amplifier_Operational:MCP6004") (at 48.26 128.905 0) (unit 2)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 10d2efb8-f268-48b7-b86c-af19ac29e060)
-    (property "Reference" "U1" (at 48.26 120.015 0)
+    (property "Reference" "U2" (at 48.26 120.015 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "MCP6004" (at 48.26 122.555 0)
@@ -1434,7 +1434,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52"
-          (reference "U1") (unit 2)
+          (reference "U2") (unit 2)
         )
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/97b440c2-49e0-43c1-8dbd-070a3fa32fe0"
           (reference "U?") (unit 2)
@@ -1574,7 +1574,7 @@
   (symbol (lib_id "Device:C_Polarized") (at 110.49 163.195 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 36689913-5aae-48db-bfae-52c703d45fde)
-    (property "Reference" "C1" (at 114.3 161.671 0)
+    (property "Reference" "C2" (at 114.3 161.671 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100u" (at 114.3 164.211 0)
@@ -1591,7 +1591,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52"
-          (reference "C1") (unit 1)
+          (reference "C2") (unit 1)
         )
       )
     )
@@ -1757,7 +1757,7 @@
   (symbol (lib_id "MCU_Microchip_AVR_Dx:AVR32DA28x-xSO") (at 83.82 64.77 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 4df22acb-7173-4560-ab9a-b5ae9468f972)
-    (property "Reference" "U2" (at 81.8641 90.805 0)
+    (property "Reference" "U1" (at 81.8641 90.805 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "AVR32DA28x-xSO" (at 81.8641 93.345 0)
@@ -1800,7 +1800,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52"
-          (reference "U2") (unit 1)
+          (reference "U1") (unit 1)
         )
       )
     )
@@ -1809,7 +1809,7 @@
   (symbol (lib_id "Device:C") (at 144.78 163.83 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4f7aa054-379e-4237-9530-5bd7b98a99f5)
-    (property "Reference" "C5" (at 148.59 163.195 0)
+    (property "Reference" "C6" (at 148.59 163.195 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100n" (at 148.59 165.735 0)
@@ -1826,7 +1826,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52"
-          (reference "C5") (unit 1)
+          (reference "C6") (unit 1)
         )
       )
     )
@@ -1835,7 +1835,7 @@
   (symbol (lib_id "Device:C") (at 231.14 76.835 90) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 505ce156-1f04-4154-9e4e-ed28fbcdc5d9)
-    (property "Reference" "C7" (at 231.14 82.55 90)
+    (property "Reference" "C4" (at 231.14 82.55 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "100n" (at 231.14 80.01 90)
@@ -1855,7 +1855,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52"
-          (reference "C7") (unit 1)
+          (reference "C4") (unit 1)
         )
       )
     )
@@ -1864,7 +1864,7 @@
   (symbol (lib_id "Amplifier_Operational:MCP6004") (at 90.17 165.1 0) (unit 5)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 52ff9c54-7dd6-4d6e-9e82-94a485c05c12)
-    (property "Reference" "U1" (at 88.9 164.465 0)
+    (property "Reference" "U2" (at 88.9 164.465 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "MCP6004" (at 88.9 167.005 0)
@@ -1893,7 +1893,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52"
-          (reference "U1") (unit 5)
+          (reference "U2") (unit 5)
         )
       )
     )
@@ -2109,7 +2109,7 @@
   (symbol (lib_id "Device:C") (at 231.14 69.85 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 9e1a763c-a45f-40fa-90de-1a065dd25bbf)
-    (property "Reference" "C6" (at 231.14 64.135 90)
+    (property "Reference" "C1" (at 231.14 64.135 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "100n" (at 231.14 66.675 90)
@@ -2129,7 +2129,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52"
-          (reference "C6") (unit 1)
+          (reference "C1") (unit 1)
         )
       )
     )
@@ -2138,7 +2138,7 @@
   (symbol (lib_id "Device:C") (at 107.315 132.715 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid a37583a6-7fb6-422b-bba0-e0bcbc6b4acd)
-    (property "Reference" "C2" (at 111.125 132.08 0)
+    (property "Reference" "C10" (at 111.125 132.08 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1u" (at 111.125 134.62 0)
@@ -2155,7 +2155,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52"
-          (reference "C2") (unit 1)
+          (reference "C10") (unit 1)
         )
       )
     )
@@ -2423,7 +2423,7 @@
   (symbol (lib_id "Device:R") (at 89.535 128.905 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid df9cfb1e-be79-42ef-ac0f-e1f890addde9)
-    (property "Reference" "R1" (at 89.535 123.825 90)
+    (property "Reference" "R23" (at 89.535 123.825 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1k" (at 89.535 126.365 90)
@@ -2440,7 +2440,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52"
-          (reference "R1") (unit 1)
+          (reference "R23") (unit 1)
         )
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/97b440c2-49e0-43c1-8dbd-070a3fa32fe0"
           (reference "R?") (unit 1)
@@ -2503,7 +2503,7 @@
   (symbol (lib_id "Device:C") (at 133.35 163.83 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid eca2d773-9db5-46e4-8699-3f0cfe0ed760)
-    (property "Reference" "C4" (at 137.16 163.195 0)
+    (property "Reference" "C5" (at 137.16 163.195 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100n" (at 137.16 165.735 0)
@@ -2520,7 +2520,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52"
-          (reference "C4") (unit 1)
+          (reference "C5") (unit 1)
         )
       )
     )
@@ -2529,7 +2529,7 @@
   (symbol (lib_id "Device:R_Photo") (at 153.035 78.105 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f5f4a929-bc00-4005-b98e-97fa5d1969ec)
-    (property "Reference" "R3" (at 145.415 77.47 0)
+    (property "Reference" "R20" (at 145.415 77.47 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "R_Photo" (at 143.51 80.01 0)
@@ -2546,7 +2546,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52"
-          (reference "R3") (unit 1)
+          (reference "R20") (unit 1)
         )
       )
     )
@@ -2555,7 +2555,7 @@
   (symbol (lib_id "Device:R") (at 147.32 71.12 270) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f67950ca-5110-4cdd-87f0-1ae5b2efde34)
-    (property "Reference" "R2" (at 147.32 66.675 90)
+    (property "Reference" "R15" (at 147.32 66.675 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "5k" (at 147.32 69.215 90)
@@ -2572,7 +2572,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52"
-          (reference "R2") (unit 1)
+          (reference "R15") (unit 1)
         )
       )
     )

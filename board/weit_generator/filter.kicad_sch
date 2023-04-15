@@ -424,7 +424,7 @@
           (reference "C?") (unit 1)
         )
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/bc867f68-0e73-45d0-a69e-b51a7f01f5c2"
-          (reference "C8") (unit 1)
+          (reference "C7") (unit 1)
         )
       )
     )
@@ -453,7 +453,7 @@
           (reference "R?") (unit 1)
         )
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/bc867f68-0e73-45d0-a69e-b51a7f01f5c2"
-          (reference "R20") (unit 1)
+          (reference "R19") (unit 1)
         )
       )
     )
@@ -462,7 +462,7 @@
   (symbol (lib_id "Device:R") (at 180.34 99.06 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 38dae8cf-9482-4f73-ae9c-c3f9924274bd)
-    (property "Reference" "R22" (at 180.34 93.98 90)
+    (property "Reference" "R21" (at 180.34 93.98 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "100" (at 180.34 96.52 90)
@@ -479,7 +479,7 @@
     (instances
       (project "weit_generator"
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/bc867f68-0e73-45d0-a69e-b51a7f01f5c2"
-          (reference "R22") (unit 1)
+          (reference "R21") (unit 1)
         )
       )
     )
@@ -508,7 +508,7 @@
           (reference "R?") (unit 1)
         )
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/bc867f68-0e73-45d0-a69e-b51a7f01f5c2"
-          (reference "R21") (unit 1)
+          (reference "R17") (unit 1)
         )
       )
     )
@@ -549,7 +549,7 @@
           (reference "U?") (unit 1)
         )
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/bc867f68-0e73-45d0-a69e-b51a7f01f5c2"
-          (reference "U1") (unit 1)
+          (reference "U2") (unit 1)
         )
       )
     )
@@ -581,7 +581,7 @@
           (reference "C?") (unit 1)
         )
         (path "/b85c55a9-e1f6-4dbf-a795-73634abf8d52/bc867f68-0e73-45d0-a69e-b51a7f01f5c2"
-          (reference "C9") (unit 1)
+          (reference "C8") (unit 1)
         )
       )
     )
