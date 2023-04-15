@@ -70,8 +70,8 @@ Umożliwia to zastosowanie wysokiej jakości generatora kwarcowego, o precyzji r
 w całym zakresie temperatur. Oznacza to, iż częstotliwość uzyskanego sygnału nie będzie odbiegać o więcej niż $\pm$\qty{50}{\mHz} od wartości oczekiwanej. 
 
 \subsection{Mikrokontroler}
-Jako główny mikrokontroler wybrany został układ \textbf{AVR32DA28}\cite{avr-datasheet} należący do rodziny 8-bitowych układów AVR.
-W porównaniu ze starszymi generacjami, producent dopuszcza pracę układu przy częstotliwościach przekraczających \qty{8}{\MHz} z napięciem \qty{3}{\volt}.
+Jako główny mikrokontroler wybrany został \textbf{AVR32DA28}\cite{avr-datasheet} należący do rodziny 8-bitowych układów AVR.
+W porównaniu ze starszymi generacjami, producent dopuszcza pracę przy częstotliwościach przekraczających \qty{8}{\MHz} z napięciem \qty{3}{\volt}.
 Jednocześnie dokonana została unifikacja modelu pamięci, co okaże być się przydatne przy pisaniu oprogramowania(\ref{sec:impl}).
 
 \subsection{Przetwornik Cyfrowo-Analogowy}
@@ -156,7 +156,7 @@ Obecne jest tzw. zniekształcenie kwantyzacji, wynikające z faktu, iż sygnał 
 z serii dyskretnych wartości. Jednak jeśli dokładnie przyjrzymy się różnicy pomiędzy uzyskanym sygnałem,
 a idealną sinusoidą, to okaże się, że pierwsza składowa tej różnicy ma częstotliwość $f_1 = f_0 \times N_{smpl}$.
 
-Co więcej, stosunek mocy całego sygnału do mocy wyższych składowych dla konwertera z N-bitami wynosi
+Co więcej, stosunek mocy całego sygnału do mocy wyższych składowych dla konwertera z N-bitami wynosi \cite{analog-dac-noise}
 \begin{equation}
 	SQR = 1.76 + 6.02 \times N (dB)
 \end{equation}
@@ -168,7 +168,7 @@ oraz jest rozłożona w paśmie megahercowym.
 	\centering
 	\includegraphics[width=0.6\textwidth]{sine_steps.png}
 	%\includegraphics[width=0.55\textwidth]{img/qunatization_error_fig.jpg}
-	\caption{Przebieg sinusoidy generowanej przy pomocy przetwornika R-2R.}
+	\caption{Przebieg z widocznym błędem kwantyzacji}
 	\label{fig:sine-stepped}
 \end{figure}
 
@@ -176,7 +176,7 @@ oraz jest rozłożona w paśmie megahercowym.
 Mimo wszystko należy usunąć składowe wyższej częstotliwości. Funkcje tą realizuje kondensator \verb|C2| (Rys. \ref{fig:filter}).
 
 Dodatkowo, rzeczywiste wzmacniacze operacyjne nie są wstanie generować sygnałów bardzo bliskich ($ |V_{wyj} - V_{zasi}| <\qty{300}{\mV}$) szyn zasilania.
-Tłumienia tego dokonują komponenty pasywne \verb|C1, R1, R2|, zachowując wartość środkową sygnału na poziomie \qty{1,5}{\V}
+Tłumienia tego dokonują komponenty pasywne \verb|C1, R1, R2|, zachowując wartość środkową sygnału na poziomie \qty{1,5}{\V}.
 
 \begin{figure}[h]
 	\centering
@@ -215,7 +215,7 @@ Do tego celu wykorzystany został tzw. Detektor szczytowy (Rys. \ref{fig:peak-de
 \end{figure}
 
 \subsection{Element sprzęgający}
-Wymagany jest układ umożliwiający tłumienie sygnału zmiennego względem sygnału sterującego:
+Wymagany jest układ umożliwiający tłumienie sygnału wyjściowego względem sygnału sterującego:
 
 \begin{equation}
 	V_{wyj} \propto \frac{V_{wej}}{V_{ster}}
@@ -236,7 +236,7 @@ Popularnym elementem o zmiennym oporze jest fotorezystor. W przeciwieństwie do
 np. tranzystorów jFET, przy stałym natężeniu światła, zachowuje się on jak faktyczny rezystor,
 tzn. prąd przepływający jest wprost proporcjonalny do przyłożonego napięcia
 $I \propto V$, tym samym jego zastosowanie nie wprowadzi zniekształceń mogących wynikać
-z nie liniowości elementów półprzewodnikowych.
+z nieliniowości elementów półprzewodnikowych.
 
 Tak więc, łącząc w obudowie światłoszczelnej fotorezystor wraz z diodą LED,
 uzyskamy układ o zmiennym oporze elektrycznym, kontrolowany przez prąd diody\footnote{Zakładam $\phi \propto I$}.
@@ -263,7 +263,9 @@ Do tego celu w zupełności wystarczy układ LM4041 wraz z precyzyjnym potencjom
 Szczególnie trudnym okazało się zapewnienie stabilnej pracy układu. 
 Wartości elementów w pętli kompensacji zostały w większości dobrane empirycznie.
 Konieczne było zastosowanie dużej pojemności kondensatorów elektrolitycznych, 
-ze względu na duży czas propagacji sygnału przez resztę układu.
+ze względu na długi czas propagacji sygnału przez resztę układu.
+
+\newpage
 
 \section{Oprogramowanie}
 \label{sec:impl}
@@ -290,7 +292,7 @@ tym czasem zastosowany mikroprocesor jest przystosowany do pracy przy częstotli
 Przy zastosowanym generatorze kwarcowym o częstotliwości pracy \qty{12,288}{\MHz} oznacza to, że mamy dokładnie \textbf{12} cykli maszynowych
 na wygenerowanie następnej próbki. Co więcej, aby zachować precyzję częstotliwości musimy wykorzystać wszystkie 12 cykli za każdym razem.
 %Stąd też decyzja o implementacji całego algorytmu bezpośrednio w niskopoziomowym assemblerze.
-Stąd też, całego algorytm zaimplementowany został bezpośrednio w assembly.
+Stąd też, cały algorytm zaimplementowany został bezpośrednio w assembly.
 Pozwala to na dokładną kontrolę nad czasem wykonania całego cyklu, a jednocześnie umożliwia szereg optymalizacji
 będących poza zasięgiem kompilatora.
 
@@ -301,12 +303,9 @@ Problemem pozostaje jedynie wydajne zawijanie wskaźnika po dotarciu do 1024-tej
 Ponownie wykorzystując 8-bitową nature układów AVR, możliwe jest bardzo wydajne rozwiązanie tego problemu.
 
 Jednym z atrybutów udostępnianych przez kompilator GCC jest\\
-\verb| __attribute__((aligned (X)))|, który pozwala na wymuszenie
-wyrównania pozycji pierwszego bajtu danej zmiennej do wielokrotności \verb|X|.
-Oznacza to, że pozycja tablicy w pamięci przyjmuje postać $A \times 1024$.
-
-Tak więc, niższy bajt 16-bitowego wskaźnika będzie ulegał stałym zmianom na całej swojej długości,
-natomiast w bajcie wyższym, dzięki wyrównaniu tabeli, zmieniać się będą jedynie dwa najniższe bity (Rys. \ref{fig:bits_ex}).
+\verb| __attribute__((aligned (P)))|, który pozwala na wymuszenie
+wyrównania pozycji pierwszego bajtu danej zmiennej do wielokrotności \verb|P|.
+Oznacza to, że pozycja tablicy w pamięci przyjmuje postać $P \times 1024$.
 
 \begin{figure}[h]
 	\centering
@@ -320,6 +319,10 @@ natomiast w bajcie wyższym, dzięki wyrównaniu tabeli, zmieniać się będą j
 	\caption{Schemat rozkładu bitów we wskaźniku}
 	\label{fig:bits_ex}
 \end{figure}
+
+
+Tak więc, niższy bajt 16-bitowego wskaźnika będzie ulegał stałym zmianom na całej swojej długości,
+natomiast w bajcie wyższym, dzięki wyrównaniu tabeli, zmieniać się będą jedynie dwa najniższe bity (Rys. \ref{fig:bits_ex}).
 
 Zostaje tylko nie  pozwolić na zmianę stanu 6 najwyższych bitów wskaźnika.
 Możemy to osiągnąć używając sprytnej sztuczki, zajmującej łącznie 2 cykle zegarowe (Linia \ref{code:overflow_pointer}).
