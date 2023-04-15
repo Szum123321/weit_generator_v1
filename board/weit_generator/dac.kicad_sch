@@ -8,7 +8,7 @@
     (title "Przetwornik Cyfrowo-Analogowy")
     (date "2023-04-15")
     (rev "1.0")
-    (comment 2 "8-biowy napięciowy konwerter R-2R. Rezystory 0.1% lub lepsze")
+    (comment 2 "8-bitowy konwerter R-2R. Rezystory 0.1% lub lepsze")
   )
 
   (lib_symbols

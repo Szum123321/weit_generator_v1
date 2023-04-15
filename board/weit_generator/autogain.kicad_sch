@@ -8,7 +8,7 @@
     (title "Automatyczna kontrola amplitudy")
     (date "2023-04-15")
     (rev "1.0")
-    (comment 1 "Kondensatory polipropylenowe/polisertynowe")
+    (comment 1 "Kondensatory polipropylenowe/polisterynowe")
   )
 
   (lib_symbols

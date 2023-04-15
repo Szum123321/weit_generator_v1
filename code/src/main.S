@@ -6,40 +6,39 @@
 .global main
 
 main:
-	;temporarly use r1 for ZERO 
+	;Wyzeruj rejestr 1
 	eor r1, r1
 
-	;select external clock as Main Clock source @\label{code:set_clock}@
-	ldi r16, 0xD8; MAGIC VALUE
-	ldi r17, 0x83
-	out CPU_CCP, r16
-	sts CLKCTRL_MCLKCTRLA, r17; use external clock
+	;użyj wejścia zegarowego @\label{code:set_clock}@
+	ldi r16, 0xD8; MAGICZNA WARTOŚĆ do odblokowywania konfiguracji
+	ldi r17, 0x03; CLKOUT=0 | CLKSEL=EXTCLK
+	out CPU_CCP, r16; odblokuj konfiguracje systemową
+	sts CLKCTRL_MCLKCTRLA, r17; ustaw wejście zegara
 
 	out CPU_CCP, r16
-	sts CLKCTRL_MCLKCTRLB, r1; disable prescaler
+	sts CLKCTRL_MCLKCTRLB, r1; wyłącz skalowanie 
 
-	;set port direction and clear
 	ldi r16, 0xFF
-	sts PORTD_DIRSET, r16
+	out PORT_DIR r16 ;ustaw piny na wyjście
 	out PORT_OUT, r1
 
-	;load pointer to Z reg. pair @\label{code:set_r20_bp}@
+	;wczytaj wskaźnik do SINE_TAB do pary rejestrów Z (r30, r31) @\label{code:set_r20_bp}@
 	ldi r20, hi8(SINE_TAB)
 	mov r31, r20
 	mov r30, r1
 
 loop:
-	;pull next byte out of memory and increment the pointer @\label{code:load_and_inc}@
+	;pobierz następny bajt z pamięcia oraz zinkrementuj wskaźnik @\label{code:load_and_inc}@
 	ld r2, Z+
 
-	;output data  @\label{code:set_pin_reg}@
+	;wyślij nowe dane na piny  @\label{code:set_pin_reg}@
 	out PORT_OUT, r2
 	
-	;cyclize data pointer @\label{code:overflow_pointer}@
+	;zamknij cykl licznika @\label{code:overflow_pointer}@
 	andi r31, 0x03
 	or r31, r20
 
-	;pad for 12.288 MHz
+	;dopełnij ilość instrukcji do dokładnie 12 cylki maszynowych
 	nop
 	nop
 	nop
