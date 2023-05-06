@@ -19,12 +19,11 @@ main:
 	sts CLKCTRL_MCLKCTRLB, r1; wyłącz skalowanie zegara
 
 	ldi r16, 0xFF
-	out PORT_DIR r16 ;ustaw piny na wyjście
+	out PORT_DIR, r16 ;ustaw piny na wyjście
 	out PORT_OUT, r1
 
 	;wczytaj wskaźnik SINE_TAB do pary rejestrów Z (r30, r31) @\label{code:set_r20_bp}@
-	ldi r20, hi8(SINE_TAB)
-	mov r31, r20
+	ldi r31, hi8(SINE_TAB)
 	mov r30, r1
 
 loop:
@@ -36,7 +35,7 @@ loop:
 	
 	;zamknij cykl licznika @\label{code:overflow_pointer}@
 	andi r31, 0x03
-	or r31, r20
+	ori r31, hi8(SINE_TAB)
 
 	;dopełnij ilość instrukcji do dokładnie 12 cylki maszynowych
 	nop

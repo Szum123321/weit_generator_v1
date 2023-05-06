@@ -328,12 +328,11 @@ Zostaje tylko nie  pozwolić na zmianę stanu 6 najwyższych bitów wskaźnika.
 Możemy to osiągnąć używając sprytnej sztuczki, zajmującej łącznie 2 cykle zegarowe (Linia \ref{code:overflow_pointer}).
 
 \begin{equation}
-	r31' = \left( \left( r31 \land 11_{bin} \right) \lor r20 \right)
+	r31' = \left( \left( r31 \land 11_{bin} \right) \lor hi8(SINE\_TAB) \right)
 \end{equation}
 
 Po pierwsze zerujemy sześć najwyższych bitów górnego rejestru instrukcją \verb|ANDI| z liczbą $3_{dec}$.
-Następnie instrukcja \verb|OR| przywraca poprawny stan wyższych bitów, 
-które na początku działania programu zostały zapisane w rejestrze 20 (Linijka \ref{code:set_r20_bp}).
+Następnie instrukcja \verb|OR| przywraca poprawny stan wyższych bitów.
 
 Powyższe podejście implementacyjne spełnia postawione wcześniej wymagania dotyczące szybkości działania.
 
